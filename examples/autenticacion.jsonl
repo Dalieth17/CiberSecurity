@@ -1,0 +1,5 @@
+{"actor_id":"actor-1","outcome":"failure"}
+{"actor_id":"actor-1","outcome":"success"}
+{"actor_id":"actor-2"}
+{"actor_id":"actor-1","outcome":"failure"}
+{"actor_id":"actor-2","outcome":"failure"}
