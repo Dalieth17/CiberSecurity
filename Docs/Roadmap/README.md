@@ -11,4 +11,10 @@ Sigue las etapas en orden. En cada una, lee los conceptos, haz la práctica y gu
 | [ ] [5. Perfiles profesionales](05-perfiles.md) | Elegir un perfil y completar un proyecto afín | Proyecto con evidencia verificable |
 | [ ] [6. Empleo](06-empleo.md) | Presentar un portafolio y preparar entrevistas | Portafolio, CV y comparación de vacantes |
 
+
+## Prácticas guiadas
+
+- [Terminal, archivos y permisos](practicas/terminal.md) y [lectura de una conexión HTTPS](practicas/redes.md), en la etapa 2.
+- [Triaje con una línea de tiempo](practicas/triaje.md), en la etapa 4.
+
 Para las prácticas usa ejemplos ficticios y archivos locales. Python 3.10 o posterior solo se necesita si quieres ejecutar el analizador de la etapa 4. Esa etapa también se puede completar leyendo los datos a mano.

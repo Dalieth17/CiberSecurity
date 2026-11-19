@@ -14,4 +14,7 @@ Dibuja cómo un navegador obtiene una página ficticia. Marca la resolución de 
 
 **Criterio de salida:** explica el papel de DNS, IP, puerto, HTTP y TLS, y muestra una tabla de permisos con una acción permitida y una denegada para el lector.
 
+
+Después del diagrama, completa [Terminal, archivos y permisos](practicas/terminal.md) y [Leer una conexión HTTPS](practicas/redes.md).
+
 [Continuar a seguridad aplicada](03-seguridad-aplicada.md) · [Volver al mapa](README.md)

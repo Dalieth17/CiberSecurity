@@ -24,4 +24,7 @@ El recuento permite priorizar qué registros revisar. Los datos carecen de hora 
 
 **Criterio de salida:** reproduce los recuentos y explica por qué reportarías un evento para revisión o lo cerrarías. Indica qué dato adicional cambiaría tu decisión.
 
+
+Practica cómo priorizar la revisión con [Triaje con una línea de tiempo](practicas/triaje.md).
+
 [Continuar a perfiles profesionales](05-perfiles.md) · [Volver al mapa](README.md)
