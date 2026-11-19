@@ -13,8 +13,8 @@ Implementa cambios pequeños y revisables. Conserva la compatibilidad con los fo
 - Cuando exista código, ejecuta las pruebas y las comprobaciones disponibles en el repositorio. Documenta los comandos de instalación y verificación cuando se incorporen por primera vez.
 - Ante un hallazgo, registra el componente afectado, el impacto, la mitigación y cómo verificarla. Usa canales privados si el hallazgo contiene información sensible.
 
-## Prototipo 0.1
+## Laboratorio de autenticación
 
-El prototipo es un analizador local de registros sintéticos de autenticación. Lee un archivo JSON Lines y resumiría los intentos fallidos por identificador ficticio. El informe muestra los recuentos y señala las filas inválidas sin copiar su contenido.
+El laboratorio utiliza un analizador local de registros sintéticos de autenticación. Lee un archivo JSON Lines y resumiría los intentos fallidos por identificador ficticio. El informe muestra los recuentos y señala las filas inválidas sin copiar su contenido.
 
 La tarea se puede dar por terminada cuando un archivo de ejemplo produce los recuentos esperados, un archivo vacío produce un resumen vacío y una fila inválida queda contabilizada sin impedir el procesamiento de las filas válidas. La herramienta debe funcionar sin red y con permisos de lectura sobre el archivo de entrada.

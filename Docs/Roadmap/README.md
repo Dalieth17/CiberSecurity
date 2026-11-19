@@ -1,0 +1,14 @@
+# Ruta de aprendizaje
+
+Sigue las etapas en orden. En cada una, lee los conceptos, haz la práctica y guarda la evidencia. Avanza cuando puedas explicar el resultado con tus propias palabras y cumplir el criterio de salida. Puedes guardar el avance copiando estas casillas a tus notas.
+
+| Etapa | Aprenderás a | Evidencia |
+| --- | --- | --- |
+| [ ] [1. Fundamentos](01-fundamentos.md) | Distinguir activos, riesgos, controles y tipos de acceso | Inventario y matriz de riesgos |
+| [ ] [2. Sistemas y redes](02-sistemas-redes.md) | Explicar archivos, permisos, DNS, transporte y HTTPS | Diagrama y revisión de permisos |
+| [ ] [3. Seguridad aplicada](03-seguridad-aplicada.md) | Evaluar controles de identidad, protección de datos y configuración | Plan de endurecimiento |
+| [ ] [4. Detección y respuesta](04-deteccion.md) | Analizar eventos y documentar un caso | Informe de triaje reproducible |
+| [ ] [5. Perfiles profesionales](05-perfiles.md) | Elegir un perfil y completar un proyecto afín | Proyecto con evidencia verificable |
+| [ ] [6. Empleo](06-empleo.md) | Presentar un portafolio y preparar entrevistas | Portafolio, CV y comparación de vacantes |
+
+Para las prácticas usa ejemplos ficticios y archivos locales. Python 3.10 o posterior solo se necesita si quieres ejecutar el analizador de la etapa 4. Esa etapa también se puede completar leyendo los datos a mano.

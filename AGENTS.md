@@ -18,3 +18,7 @@ Usa este repositorio, archivos locales y datos sintéticos como entorno habitual
 ## Ramas
 
 Implementa en `DEV`, verifica el candidato en `QA` y promueve el commit validado a `MAIN`. Consulta la [especificación de requisitos](Docs/SRS.md) para comprobar los criterios de aceptación.
+
+## Contenido educativo
+
+El producto es el [roadmap de aprendizaje](Docs/Roadmap/README.md). Redacta las lecciones en español para personas que empiezan desde cero. Incluye conceptos, una práctica con datos ficticios y un criterio de salida verificable. Actualiza el mapa cuando cambie la ruta y comprueba que los enlaces y laboratorios funcionen.
