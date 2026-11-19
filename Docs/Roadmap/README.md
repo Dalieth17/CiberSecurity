@@ -17,4 +17,9 @@ Sigue las etapas en orden. En cada una, lee los conceptos, haz la práctica y gu
 - [Terminal, archivos y permisos](practicas/terminal.md) y [lectura de una conexión HTTPS](practicas/redes.md), en la etapa 2.
 - [Triaje con una línea de tiempo](practicas/triaje.md), en la etapa 4.
 
+
+## Proyecto final
+
+El [proyecto de triaje SOC](proyectos/soc/README.md) reúne un caso sintético, una plantilla de informe y una rúbrica para preparar una evidencia de portafolio.
+
 Para las prácticas usa ejemplos ficticios y archivos locales. Python 3.10 o posterior solo se necesita si quieres ejecutar el analizador de la etapa 4. Esa etapa también se puede completar leyendo los datos a mano.

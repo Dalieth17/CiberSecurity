@@ -2,6 +2,9 @@
 
 Completa primero el proyecto de [perfiles profesionales](05-perfiles.md).
 
+
+Para el perfil SOC, el [proyecto final de triaje](proyectos/soc/README.md) incluye una rúbrica para revisar tu informe antes de publicarlo.
+
 1. Compara tres vacantes junior reales del perfil que elegiste. Distingue requisitos obligatorios y deseables. Registra para cada habilidad tu evidencia o una tarea concreta para cerrar la brecha.
 2. Publica un portafolio con tu laboratorio y tu proyecto. Usa insumos ficticios y pasos reproducibles. Incluye qué decidiste y qué información te faltó.
 3. Prepara un CV orientado al perfil. Para cada proyecto, describe la tarea, la acción que realizaste y un resultado comprobable. Etiqueta las prácticas como proyectos formativos.

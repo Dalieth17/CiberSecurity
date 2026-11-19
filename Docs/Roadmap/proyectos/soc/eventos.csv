@@ -1,0 +1,9 @@
+evento,hora_utc,actor,servicio,equipo,resultado
+E01,14:02,actor-1,correo,equipo-A,fallo
+E02,14:03,actor-1,correo,equipo-A,fallo
+E03,14:04,actor-2,correo,equipo-B,exito
+E04,14:04,actor-1,correo,equipo-A,fallo
+E05,14:05,actor-1,correo,equipo-C,exito
+E06,14:06,actor-1,archivos,equipo-C,exito
+E07,14:12,actor-3,correo,equipo-D,fallo
+E08,14:20,actor-3,correo,equipo-D,exito
