@@ -4,6 +4,8 @@ El [roadmap interactivo en HTML](https://raw.githubusercontent.com/Dalieth17/Cib
 
 En el **Cuaderno** de cada nivel puedes escribir el método, el resultado y tu decisión. Desde **Mi trabajo y copias** puedes descargar las notas en Markdown para el portafolio o guardar una copia JSON para restaurar tu avance en otro navegador. Sigue usando únicamente datos ficticios en las notas.
 
+Los niveles de detección, seguridad de aplicaciones y validación avanzada ofrecen un **Laboratorio** dentro del HTML. Filtra una alerta de autenticación, verifica una política de permisos o compara reglas con criterios operativos. Cuando compruebes un resultado, puedes añadirlo al cuaderno.
+
 Sigue las etapas en orden. En cada una, lee los conceptos, haz la práctica y guarda la evidencia. Avanza cuando puedas explicar el resultado con tus propias palabras y cumplir el criterio de salida. Puedes guardar el avance copiando estas casillas a tus notas.
 
 | Etapa | Aprenderás a | Evidencia |

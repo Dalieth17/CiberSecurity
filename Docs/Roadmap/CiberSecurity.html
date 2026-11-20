@@ -146,6 +146,32 @@ footer { padding:1.2rem 0 1.8rem; text-align:center; color:var(--muted); font-si
 #import-status { min-height:1.5em; margin-top:.45rem; font-size:.84rem; }
 @media (min-width:701px) { .map { position:sticky; top:.9rem; max-height:calc(100dvh - 1.8rem); overflow:auto; padding:.25rem .4rem .5rem .15rem; scrollbar-gutter:stable; } }
 @media (max-width:700px) { .status-links { flex-direction:row; flex-wrap:wrap; gap:.5rem 1.2rem; } }
+.mission { border:1px solid #b9cab9; border-radius:1rem; overflow:hidden; background:#f6f9f1; box-shadow:0 .3rem #dce7d7; }
+.mission-head { padding:1rem 1.1rem; background:linear-gradient(130deg,#17352b,#244c38); color:#fbfff1; }
+.mission-head .kicker { color:var(--mint); }
+.mission-head h3 { margin:.15rem 0 0; }
+.panel #mission-title { scroll-margin-top:2rem; }
+.mission form { display:grid; grid-template-columns:minmax(0,1fr); gap:.8rem; padding:1rem 1.1rem 1.15rem; }
+.mission form > p,.mission-policy { font-size:.91rem; color:#354f42; }
+.mission-policy { padding-left:1.25rem; margin:0; }
+.mission-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.6rem; }
+.mission-field { display:grid; gap:.25rem; font-size:.84rem; font-weight:750; color:#244935; }
+.mission select,.mission input[type="number"] { width:100%; min-height:2.5rem; padding:.35rem .45rem; border:1px solid #9eb79b; border-radius:.45rem; background:#fffef9; color:var(--ink); font:inherit; font-weight:550; }
+.mission form > .mission-hint { font-size:.81rem; color:#395d49; }
+.mission fieldset { background:#edf4e8; margin:0; }
+.table-scroll { max-width:100%; overflow:auto; border:1px solid #cbdccc; border-radius:.65rem; background:#fffef8; }
+.table-scroll table { width:100%; border-collapse:collapse; font-size:.82rem; text-align:left; white-space:nowrap; }
+.table-scroll caption { text-align:left; padding:.55rem .65rem; font-weight:800; color:#244935; background:#edf4e6; }
+.table-scroll th,.table-scroll td { padding:.4rem .57rem; border-bottom:1px solid #dce6d9; }
+.table-scroll th[scope="col"] { background:#edf4e6; border-bottom:1px solid #cbdccc; }
+.table-scroll tbody tr:nth-child(even) { background:#f6f8ee; }
+.table-scroll tbody tr:last-child > * { border-bottom:0; }
+.table-scroll select { min-width:7.5rem; }
+.mission-result { font-size:.87rem; white-space:pre-line; }
+.mission-result:not(:empty) { padding:.65rem .8rem; border-radius:.55rem; background:#f8f0dd; color:#663c20; border:1px solid #decaa1; }
+.mission-result[data-pass="true"]:not(:empty) { background:#e4efda; color:#26543a; border-color:#bdd2b4; }
+@media (max-width:880px) { .mission-grid.compact { grid-template-columns:1fr; } }
+@media (max-width:480px) { .mission-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -457,6 +483,265 @@ const levels = [
     links: [['Guía de empleo', '06-empleo.md']]
   }
 ];
+const missionTitles = {
+  deteccion: 'Consola de triaje',
+  appsec: 'Banco de pruebas de autorización',
+  avanzado: 'Evaluador de reglas de detección'
+};
+
+const authEvents = [
+  ['E01', '09:00', 'actor-1', 'correo', 'equipo-A', 'Fallo'],
+  ['E02', '09:01', 'actor-2', 'archivos', 'equipo-B', 'Fallo'],
+  ['E03', '09:02', 'actor-1', 'correo', 'equipo-A', 'Fallo'],
+  ['E04', '09:03', 'actor-3', 'correo', 'equipo-C', 'Éxito'],
+  ['E05', '09:04', 'actor-1', 'archivos', 'equipo-A', 'Fallo'],
+  ['E06', '09:05', 'actor-1', 'correo', 'equipo-A', 'Fallo'],
+  ['E07', '09:06', 'actor-1', 'correo', 'equipo-D', 'Éxito'],
+  ['E08', '09:07', 'actor-2', 'archivos', 'equipo-B', 'Fallo'],
+  ['E09', '09:13', 'actor-2', 'archivos', 'equipo-B', 'Fallo']
+];
+
+const accessCases = [
+  ['P01', 'Lector', 'Leer', 'Propio', true, 'El lector puede consultar su informe.'],
+  ['P02', 'Lector', 'Editar', 'Propio', false, 'Ser titular no concede al lector permiso de escritura.'],
+  ['P03', 'Editor', 'Editar', 'Del mismo equipo', false, 'El editor solo puede editar sus propios informes.'],
+  ['P04', 'Editor', 'Editar', 'Propio', true, 'El editor tiene permiso de escritura sobre su informe.'],
+  ['P05', 'Auditor', 'Leer', 'Del mismo equipo', true, 'El auditor puede leer informes de su equipo.'],
+  ['P06', 'Auditor', 'Leer', 'De otro equipo', false, 'El acceso del auditor se limita a su equipo.'],
+  ['P07', 'Invitado', 'Leer', 'Del mismo equipo', false, 'La política deniega las solicitudes que carecen de un permiso explícito.']
+];
+
+const detectionCases = [
+  ['C01', true, true, true], ['C02', true, true, true], ['C03', true, true, true],
+  ['C04', true, true, true], ['C05', true, true, false], ['C06', true, false, false],
+  ['C07', false, true, true], ['C08', false, true, false], ['C09', false, true, false],
+  ['C10', false, false, false], ['C11', false, false, false], ['C12', false, false, false]
+];
+
+const measures = [
+  ['tp', 'Verdaderos positivos'], ['fp', 'Falsos positivos'],
+  ['fn', 'Falsos negativos'], ['tn', 'Verdaderos negativos']
+];
+
+const operatingPolicies = {
+  critica: {label:'Servicio crítico', recall:80, maxFp:3},
+  limitada: {label:'Capacidad de revisión limitada', recall:65, maxFp:1}
+};
+
+function scenarioTable(caption, headings, rows, bodyId = '') {
+  return `<div class="table-scroll" role="region" aria-label="${caption}" tabindex="0">
+    <table><caption>${caption}</caption><thead><tr>${headings.map(text => `<th scope="col">${text}</th>`).join('')}</tr></thead>
+    <tbody ${bodyId ? `id="${bodyId}"` : ''}>${tableRows(rows)}</tbody></table></div>`;
+}
+
+function tableRows(rows) {
+  return rows.map(([id, ...values]) =>
+    `<tr><th scope="row">${id}</th>${values.map(value => `<td>${value}</td>`).join('')}</tr>`
+  ).join('');
+}
+
+function choices(id, label, options) {
+  return `<label class="mission-field" for="${id}">${label}<select id="${id}" name="${id}" required>
+    ${options.map(([value, text]) => `<option value="${value}">${text}</option>`).join('')}
+  </select></label>`;
+}
+
+function counter(id, label, max) {
+  return `<label class="mission-field" for="${id}">${label}
+    <input id="${id}" name="${id}" type="number" inputmode="numeric" min="0" max="${max}" step="1" required>
+  </label>`;
+}
+
+function triageMission() {
+  const all = ['', 'Todos'];
+  return `<p>Encuentra el actor y el servicio con al menos tres fallos en una ventana de <strong>cinco minutos inclusive</strong>. Filtra ambos, calcula el intervalo entre el primer y el tercer fallo y clasifica la observación.</p>
+    <div class="mission-grid">
+      ${choices('triage-actor', 'Actor', [all, ...Array.from(new Set(authEvents.map(event => event[2])), actor => [actor, actor])])}
+      ${choices('triage-service', 'Servicio', [all, ['correo', 'Correo'], ['archivos', 'Archivos']])}
+    </div>
+    <p id="event-count" class="mission-hint" role="status">${authEvents.length} eventos visibles.</p>
+    ${scenarioTable('Eventos de autenticación · UTC', ['ID','Hora','Actor','Servicio','Equipo','Resultado'], authEvents, 'triage-rows')}
+    <div class="mission-grid">
+      ${counter('triage-span', 'Intervalo en minutos', 60)}
+      ${choices('triage-decision', 'Decisión con la evidencia actual', [['','Selecciona'],['close','Cerrar la alerta'],['review','Escalar para verificar'],['confirmed','Declarar incidente confirmado']])}
+    </div>`;
+}
+
+function accessMission() {
+  const rows = accessCases.map(([id, role, action, resource]) => [id, role, action, resource,
+    `<select id="access-${id}" name="access-${id}" aria-label="Decisión ${id}" required>
+       <option value="">Selecciona</option><option value="allow">Permitir</option><option value="deny">Denegar</option>
+     </select>`]);
+  return `<p>Comprueba la política de un servicio ficticio de informes. Evalúa cada solicitud desde la perspectiva del servidor.</p>
+    <ul class="mission-policy">
+      <li><strong>Lector:</strong> solo puede leer informes propios.</li>
+      <li><strong>Editor:</strong> puede leer y editar informes propios.</li>
+      <li><strong>Auditor:</strong> puede leer informes de su equipo y carece de permiso de escritura.</li>
+      <li>Las solicitudes sin permiso explícito se deniegan.</li>
+    </ul>
+    ${scenarioTable('Solicitudes de prueba', ['Caso', 'Rol', 'Acción', 'Informe', 'Decisión'], rows)}`;
+}
+
+function compareMission() {
+  const rows = detectionCases.map(([id, ...flags]) => [id, ...flags.map(flag => flag ? 'Sí' : 'No')]);
+  return `<p>Compara dos reglas con el mismo conjunto de validación. La columna «Escalar» es la etiqueta de referencia. Completa ambas matrices y decide qué regla cumple la política seleccionada.</p>
+    ${choices('compare-policy', 'Contexto operativo', Object.entries(operatingPolicies).map(([id, policy]) => [id, policy.label]))}
+    <p class="mission-hint" id="compare-criteria">${policyCriteria(operatingPolicies.critica)}</p>
+    ${scenarioTable('Casos independientes etiquetados', ['Caso','Escalar','Alerta A','Alerta B'], rows)}
+    <div class="mission-grid">${['a','b'].map(rule =>
+      `<fieldset><legend>Regla ${rule.toUpperCase()}</legend><div class="mission-grid compact">
+        ${measures.map(([id,label]) => counter(`${rule}-${id}`, label, detectionCases.length)).join('')}
+      </div></fieldset>`).join('')}</div>
+    ${choices('compare-decision','Regla que cumple', [['','Selecciona'],['a','Regla A'],['b','Regla B'],['both','Ambas reglas'],['none','Ninguna regla']])}`;
+}
+
+function policyCriteria(policy) {
+  return `Criterio de aceptación · Sensibilidad ≥ ${policy.recall} % y máximo ${policy.maxFp} falsos positivos.`;
+}
+
+function renderMission(id) {
+  const content = {deteccion:triageMission, appsec:accessMission, avanzado:compareMission}[id];
+  return `<section class="mission" aria-labelledby="mission-title">
+    <div class="mission-head"><span class="kicker">Laboratorio interactivo</span><h3 id="mission-title" tabindex="-1">${missionTitles[id]}</h3></div>
+    <form id="mission-form">
+      ${content()}
+      <div class="panel-actions">
+        <button class="action" type="submit">Comprobar laboratorio</button>
+        <button class="action secondary" type="button" id="add-mission" hidden>Añadir resultado al cuaderno</button>
+      </div>
+      <div class="mission-result" id="mission-result" role="status"></div>
+    </form>
+  </section>`;
+}
+
+function triageView(form) {
+  const actor = form.elements['triage-actor'].value;
+  const service = form.elements['triage-service'].value;
+  const rows = authEvents.filter(event => (!actor || event[2] === actor) && (!service || event[3] === service));
+  return {actor, service, rows};
+}
+
+function minutes(time) {
+  const [hours, mins] = time.split(':').map(Number);
+  return hours * 60 + mins;
+}
+
+function checkTriage(form) {
+  const {actor, service, rows} = triageView(form);
+  const failures = rows.filter(row => row[5] === 'Fallo');
+  const windowStart = failures.findIndex((row,i) => i + 2 < failures.length &&
+    minutes(failures[i + 2][1]) - minutes(row[1]) <= 5);
+  if (!actor || !service || windowStart < 0) {
+    return {message:'Elige un actor y un servicio que tengan tres fallos dentro de cinco minutos. Compara las horas UTC.'};
+  }
+  const matches = failures.slice(windowStart, windowStart + 3);
+  const span = minutes(matches[2][1]) - minutes(matches[0][1]);
+  const issues = [];
+  if (Number(form.elements['triage-span'].value) !== span) {
+    issues.push('Resta la hora del primer fallo a la del tercero. Excluye los éxitos del cálculo.');
+  }
+  if (form.elements['triage-decision'].value !== 'review') {
+    issues.push('La regla justifica revisar el caso. La tabla todavía no permite confirmar quién inició sesión.');
+  }
+  if (issues.length) return {message:issues.join(' ')};
+  const evidence = `Triaje de ${actor} en ${service}: ${matches.map(row => row[0]).join(', ')} registran tres fallos entre ${matches[0][1]} y ${matches[2][1]} UTC (${span} min). Decisión: escalar para verificar el dispositivo y el segundo factor.`;
+  return {message:'Correlación correcta. ' + evidence, evidence};
+}
+
+function checkAccess(form) {
+  const mismatches = accessCases.filter(([id, , , , allowed]) =>
+    form.elements[`access-${id}`].value !== (allowed ? 'allow' : 'deny'));
+  if (mismatches.length) {
+    return {message:mismatches.map(([id, , , , , reason]) => `${id} · ${reason}`).join('\n')};
+  }
+  const allowed = accessCases.filter(row => row[4]).map(row => row[0]);
+  const denied = accessCases.filter(row => !row[4]).map(row => row[0]);
+  const evidence = `Matriz de autorización comprobada. Permitidos: ${allowed.join(', ')}. Denegados: ${denied.join(', ')}. Se verificaron rol, operación y alcance del recurso en cada caso.`;
+  return {message:evidence, evidence};
+}
+
+function matrix(column) {
+  const counts = {tp:0,fp:0,fn:0,tn:0};
+  for (const row of detectionCases) {
+    const actual = row[1];
+    const alert = row[column];
+    counts[alert ? (actual ? 'tp' : 'fp') : (actual ? 'fn' : 'tn')] += 1;
+  }
+  return counts;
+}
+
+function checkComparison(form) {
+  const matrices = {a:matrix(2),b:matrix(3)};
+  const errors = Object.entries(matrices).flatMap(([rule, counts]) =>
+    measures.filter(([key]) => Number(form.elements[`${rule}-${key}`].value) !== counts[key])
+      .map(([, label]) => `${rule.toUpperCase()} · ${label.toLowerCase()}`));
+  if (errors.length) {
+    return {message:`Revisa estas celdas: ${errors.join(', ')}. Cruza la etiqueta de referencia con la alerta. Cada caso pertenece a una sola celda por regla.`};
+  }
+  const policy = operatingPolicies[form.elements['compare-policy'].value];
+  const recall = counts => counts.tp / (counts.tp + counts.fn) * 100;
+  const eligible = Object.entries(matrices).filter(([, counts]) => recall(counts) >= policy.recall && counts.fp <= policy.maxFp);
+  const expected = eligible.length === 2 ? 'both' : eligible[0]?.[0] || 'none';
+  const percent = new Intl.NumberFormat('es', {style:'percent', maximumFractionDigits:1});
+  const metrics = Object.entries(matrices).map(([rule, counts]) =>
+    `${rule.toUpperCase()}: sensibilidad ${percent.format(recall(counts) / 100)}, precisión ${percent.format(counts.tp / (counts.tp + counts.fp))}, FP=${counts.fp}`
+  ).join('. ');
+  if (form.elements['compare-decision'].value !== expected) {
+    return {message:`Las matrices son correctas. Revisa la política: ${metrics}. La regla debe cumplir los dos límites.`};
+  }
+  const selection = {a:'regla A', b:'regla B', both:'ambas reglas', none:'ninguna regla'}[expected];
+  const evidence = `${policy.label}. ${policyCriteria(policy)} ${metrics}. Decisión: ${selection} cumple la política según la muestra.`;
+  return {message:evidence, evidence};
+}
+
+function attachMission(id) {
+  const form = document.querySelector('#mission-form');
+  if (!form) return;
+  const output = document.querySelector('#mission-result');
+  const add = document.querySelector('#add-mission');
+  let evidence = '';
+  form.addEventListener('input', () => {
+    evidence = '';
+    add.hidden = true;
+    output.textContent = '';
+    if (id === 'deteccion') {
+      const {rows} = triageView(form);
+      document.querySelector('#triage-rows').innerHTML = rows.length ? tableRows(rows)
+        : '<tr><td colspan="6">No hay eventos para estos filtros.</td></tr>';
+      document.querySelector('#event-count').textContent = `Eventos visibles · ${rows.length} de ${authEvents.length}`;
+    } else if (id === 'avanzado') {
+      document.querySelector('#compare-criteria').textContent = policyCriteria(operatingPolicies[form.elements['compare-policy'].value]);
+    }
+  });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const assess = {deteccion:checkTriage, appsec:checkAccess, avanzado:checkComparison}[id];
+    const result = assess(form);
+    evidence = result.evidence || '';
+    add.hidden = !evidence;
+    output.dataset.pass = String(Boolean(evidence));
+    output.textContent = result.message;
+  });
+  add.addEventListener('click', () => {
+    if (!evidence) return;
+    const field = document.querySelector('#note-1');
+    const current = field.value;
+    const entry = `[${missionTitles[id]}] ${evidence}`;
+    if (current.split('\n').includes(entry)) {
+      output.textContent = 'Este resultado ya está en el cuaderno.';
+      return;
+    }
+    const updated = [current, entry].filter(Boolean).join('\n\n');
+    if (updated.length > noteLimit) {
+      output.textContent = 'El campo Resultado no tiene espacio suficiente. Libera espacio en el cuaderno y vuelve a intentarlo.';
+      return;
+    }
+    field.value = updated;
+    field.dispatchEvent(new Event('input', {bubbles:true}));
+    output.textContent = 'Resultado añadido al cuaderno.';
+  });
+}
+
 const evidenceFields = [
   ['Método', 'Qué hiciste y cómo puede repetirlo otra persona.'],
   ['Resultado', 'Qué observaste o calculaste. Cita la evidencia.'],
@@ -603,6 +888,7 @@ function renderLevel() {
     <nav class="chapter-nav" aria-label="Partes del nivel">
       <a href="#topics-title"><span aria-hidden="true">01</span> Conceptos</a>
       <a href="#lab-title"><span aria-hidden="true">02</span> Práctica</a>
+      ${missionTitles[level.id] ? '<a href="#mission-title">Laboratorio</a>' : ''}
       <a href="#workbook-title"><span aria-hidden="true">03</span> Cuaderno</a>
       <a href="#quiz-title"><span aria-hidden="true">04</span> Evaluación</a>
     </nav>
@@ -617,6 +903,7 @@ function renderLevel() {
         ${level.challenge ? `<div class="challenge"><h4>${level.challenge.title}</h4><p class="intro-text">${level.challenge.context}</p><ol>${level.challenge.tasks.map(task => `<li>${task}</li>`).join('')}</ol><details><summary>Comprobar mi decisión</summary><p>${level.challenge.expected}</p></details></div>` : ''}
         <div class="checks">${level.checks.map((check, i) => `<label><input type="checkbox" data-check="${i}" ${work.checks[i] ? 'checked' : ''}>${check}</label>`).join('')}</div>
       </section>
+      ${missionTitles[level.id] ? renderMission(level.id) : ''}
       <section class="workbook" aria-labelledby="workbook-title">
         <h3 id="workbook-title" tabindex="-1">Cuaderno de evidencias</h3>
         <p class="intro-text">Documenta la práctica con datos ficticios. Puedes descargar tus borradores desde Mi trabajo y copias.</p>
@@ -640,6 +927,7 @@ function renderLevel() {
     </div>`;
 
   if (level.input) document.querySelector('#lab-input').textContent = level.input;
+  attachMission(level.id);
   panel.querySelectorAll('[data-note]').forEach(field => {
     field.value = work.notes[field.dataset.note];
   });
