@@ -119,6 +119,33 @@ footer { padding:1.2rem 0 1.8rem; text-align:center; color:var(--muted); font-si
   .panel-body { gap:1.25rem; }.panel-head,.panel-body { padding:1rem; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+.chapter-nav { display:flex; gap:.35rem; flex-wrap:wrap; padding:.85rem clamp(1rem,4vw,2.1rem); border-bottom:1px solid var(--line); background:#f7faee; }
+.chapter-nav a { min-height:2.5rem; display:inline-flex; align-items:center; gap:.35rem; padding:.3rem .55rem; color:#27563d; text-decoration:none; font-size:.83rem; font-weight:750; border:1px solid #d7e1d1; border-radius:.55rem; background:#fffef8; }
+.chapter-nav a:hover { background:#e5efd5; }
+.chapter-nav a span { font-size:.7rem; color:#537260; }
+.panel [id][tabindex="-1"] { scroll-margin-top:.8rem; }
+.workbook { padding:1.05rem; border:1px solid #bdcfb8; border-radius:.9rem; background:#edf4e7; box-shadow:0 .25rem #d4e2cb; }
+.workbook h3 { margin-bottom:.25rem; }
+.workbook-fields { display:grid; gap:.75rem; margin-block:.85rem; }
+.workbook label { display:block; font-weight:800; font-size:.87rem; }
+.workbook .hint { display:block; margin:.15rem 0 .35rem; font-size:.82rem; color:var(--muted); }
+.workbook textarea { display:block; width:100%; min-height:5rem; resize:vertical; border:1px solid #9db89c; border-radius:.58rem; padding:.58rem .7rem; background:#fffef9; color:var(--ink); font:inherit; font-size:.89rem; }
+.hint-row { display:flex; justify-content:space-between; gap:.65rem; flex-wrap:wrap; font-size:.81rem; color:var(--muted); }
+.status-links { display:flex; flex-direction:column; gap:.45rem; }
+.link-button { width:fit-content; padding:0; background:transparent; border:0; color:#255f43; text-decoration:underline; text-underline-offset:.2em; font-size:.83rem; font-weight:750; }
+.asset-dialog { width:min(100% - 2rem,36rem); max-height:calc(100% - 2rem); overflow:auto; padding:1.25rem; background:var(--white); color:var(--ink); border:1px solid #a9c0a5; border-radius:1.1rem; box-shadow:0 10px #162d2540,0 20px 55px #12251f55; }
+.asset-dialog::backdrop { background:#10251da8; }
+.dialog-head { display:flex; align-items:start; justify-content:space-between; gap:.6rem; }
+.dialog-head h2 { font-size:clamp(1.75rem,5vw,2.25rem); line-height:1.15; }
+.dialog-item { border-top:1px solid var(--line); margin-top:.85rem; padding-top:.8rem; }
+.dialog-item h3 { font-family:var(--sans); font-weight:800; font-size:.95rem; letter-spacing:normal; }
+.dialog-item p { margin:.3rem 0 .55rem; color:var(--muted); font-size:.86rem; }
+.dialog-actions { display:flex; flex-wrap:wrap; gap:.7rem; }
+.secondary { background:#e6efd8; color:#214634; border-color:#98b690; box-shadow:0 3px #c5d6bb; }
+.import-review { margin-top:.75rem; border:1px solid #d6caaa; border-radius:.6rem; background:#f5f0dc; padding:.7rem; }
+#import-status { min-height:1.5em; margin-top:.45rem; font-size:.84rem; }
+@media (min-width:701px) { .map { position:sticky; top:.9rem; max-height:calc(100dvh - 1.8rem); overflow:auto; padding:.25rem .4rem .5rem .15rem; scrollbar-gutter:stable; } }
+@media (max-width:700px) { .status-links { flex-direction:row; flex-wrap:wrap; gap:.5rem 1.2rem; } }
 </style>
 </head>
 <body>
@@ -141,7 +168,10 @@ footer { padding:1.2rem 0 1.8rem; text-align:center; color:var(--muted); font-si
     <section class="status" aria-label="Progreso del roadmap">
       <div><strong id="progress-text" aria-live="polite">0 de 7 niveles verificados</strong><p id="next-step"></p></div>
       <progress id="progress" max="7" value="0" aria-label="Niveles verificados"></progress>
-      <a id="resume" href="#nivel">Continuar mi ruta →</a>
+      <div class="status-links">
+        <a id="resume" href="#nivel">Continuar mi ruta →</a>
+        <button class="link-button" id="open-work" type="button">Mi trabajo y copias</button>
+      </div>
     </section>
     <div class="layout">
       <nav class="map" id="mapa" aria-labelledby="map-title">
@@ -155,6 +185,31 @@ footer { padding:1.2rem 0 1.8rem; text-align:center; color:var(--muted); font-si
   </div>
 </main>
 <footer><div class="wrap" id="storage-status">El avance se guarda en este navegador si permite el almacenamiento local.</div></footer>
+<dialog class="asset-dialog" id="my-work" aria-labelledby="my-work-title">
+  <div class="dialog-head"><h2 id="my-work-title">Mi trabajo</h2><form method="dialog"><button class="action secondary" type="submit">Cerrar</button></form></div>
+  <div class="dialog-item">
+    <h3>Portafolio Markdown</h3>
+    <p id="portfolio-summary"></p>
+    <button class="action" id="export-portfolio" type="button">Descargar portafolio</button>
+  </div>
+  <div class="dialog-item">
+    <h3>Copia de seguridad</h3>
+    <p>Incluye la rama elegida, los resultados y todos los borradores. Usa la copia para continuar en otro navegador o dispositivo.</p>
+    <div class="dialog-actions">
+      <button class="action secondary" id="export-backup" type="button">Descargar copia</button>
+      <button class="action secondary" id="select-backup" type="button">Elegir copia para restaurar</button>
+      <input id="backup-file" type="file" aria-label="Archivo de copia de seguridad" accept=".json,application/json" hidden>
+    </div>
+    <div class="import-review" id="import-review" hidden>
+      <p id="import-summary"></p>
+      <div class="dialog-actions">
+        <button class="action" id="restore-backup" type="button">Reemplazar mi avance</button>
+        <button class="action secondary" id="cancel-import" type="button">Cancelar</button>
+      </div>
+    </div>
+    <p id="import-status" role="status"></p>
+  </div>
+</dialog>
 <script>
 const levels = [
   {
@@ -402,6 +457,25 @@ const levels = [
     links: [['Guía de empleo', '06-empleo.md']]
   }
 ];
+const evidenceFields = [
+  ['Método', 'Qué hiciste y cómo puede repetirlo otra persona.'],
+  ['Resultado', 'Qué observaste o calculaste. Cita la evidencia.'],
+  ['Decisión y límites', 'Qué decidiste, qué falta comprobar y cuál es el siguiente paso.']
+];
+const evidencePrompts = {
+  fundamentos: ['Identifica los tres activos y explica cómo estimaste el riesgo.', 'Anota responsable, control y comprobación para cada activo.', 'Justifica qué riesgo atenderías primero y con qué evidencia.'],
+  sistemas: ['Describe cómo filtraste los eventos y cómo dibujaste la conexión.', 'Anota el recuento, los permisos y la capa que devolvió el 403.', 'Indica qué dato pedirías para explicar el rechazo.'],
+  seguridad: ['Enumera los cinco controles, sus responsables y cómo probarlos.', 'Muestra los cálculos y cuál de los objetivos de recuperación se incumplió.', 'Explica qué cambiarías y cómo comprobarías una restauración.'],
+  deteccion: ['Anota el filtro, la ventana y los eventos que revisaste.', 'Registra la línea de tiempo UTC y separa hechos de hipótesis.', 'Incluye prioridad, responsable, próxima acción y condición de cierre.'],
+  soc: ['Documenta la regla, el conjunto de eventos y cómo repetir el recuento.', 'Escribe un relevo breve con eventos citados y dos hipótesis.', 'Justifica el escalado y anota qué necesita el siguiente analista.'],
+  appsec: ['Describe los límites de confianza y dónde se comprueba la autorización.', 'Incluye seis comprobaciones con rol, operación y resultado esperado.', 'Explica qué registrarías y qué cambio priorizarías.'],
+  nube: ['Define las identidades, entornos y operaciones elegidas.', 'Enumera decisiones permitidas y denegadas para seis solicitudes.', 'Identifica al responsable de aprobación y cómo revisarías la separación.'],
+  grc: ['Define la escala y los criterios de probabilidad e impacto.', 'Compara el riesgo inherente y residual para los tres casos.', 'Identifica a quien acepta el riesgo y qué evidencia necesita.'],
+  avanzado: ['Documenta las matrices, el cálculo de métricas y sus denominadores.', 'Incluye los resultados del conjunto independiente y el criterio de aceptación.', 'Registra decisión de promoción, reversión y responsables de respuesta.'],
+  empleo: ['Anota cómo elegiste dos evidencias y comparaste las tres vacantes.', 'Resume qué puede comprobar quien revisa el portafolio y qué brechas quedan.', 'Escribe una decisión técnica para la entrevista y qué harías después.']
+};
+const noteLimit = 3000;
+
 const byId = new Map(levels.map(level => [level.id, level]));
 const baseRoute = ['fundamentos', 'sistemas', 'seguridad', 'deteccion'];
 const branches = ['soc', 'appsec', 'nube', 'grc'];
@@ -424,38 +498,48 @@ function read(key) {
   }
 }
 
-const saved = read(stateKey);
 const previous = read('cibersecurity-roadmap-v1');
 const legacy = new Set(Array.isArray(previous) ? previous.map(path => legacyIds[path]) : []);
-const state = {
-  profile: branches.includes(saved?.profile) ? saved.profile : null,
-  current: byId.has(saved?.current) ? saved.current : 'fundamentos',
-  work: {}
-};
+let state = normalizeState(read(stateKey));
 
-for (const level of levels) {
-  const entry = saved?.work?.[level.id];
-  state.work[level.id] = {
-    checks: level.checks.map((_, i) => entry?.checks?.[i] === true),
-    answers: level.quiz.map(([, choices], i) => {
-      const answer = entry?.answers?.[i];
-      return Number.isInteger(answer) && answer >= 0 && answer < choices.length ? answer : null;
-    }),
-    verified: false
+function normalizeState(saved) {
+  const data = {
+    profile: branches.includes(saved?.profile) ? saved.profile : null,
+    current: byId.has(saved?.current) ? saved.current : 'fundamentos',
+    work: {}
   };
-  state.work[level.id].verified = entry?.verified === true && passes(level);
+
+  for (const level of levels) {
+    const entry = saved?.work?.[level.id];
+    const work = {
+      checks: level.checks.map((_, i) => entry?.checks?.[i] === true),
+      answers: level.quiz.map(([, choices], i) => {
+        const answer = entry?.answers?.[i];
+        return Number.isInteger(answer) && answer >= 0 && answer < choices.length ? answer : null;
+      }),
+      notes: evidenceFields.map((_, i) => {
+        const note = entry?.notes?.[i];
+        return typeof note === 'string' ? note.slice(0, noteLimit) : '';
+      }),
+      verified: false
+    };
+    work.verified = entry?.verified === true && passes(level, work);
+    data.work[level.id] = work;
+  }
+  return data;
 }
 
 function save() {
   try {
     localStorage.setItem(stateKey, JSON.stringify(state));
+    return true;
   } catch {
-    storageStatus.textContent = 'El almacenamiento local está desactivado. El avance se conserva mientras esta página permanezca abierta.';
+    storageStatus.textContent = 'El almacenamiento local está desactivado. Descarga una copia para conservar tu avance al cerrar esta página.';
+    return false;
   }
 }
 
-function passes(level) {
-  const work = state.work[level.id];
+function passes(level, work) {
   return work.checks.every(Boolean) && level.quiz.every((question, i) => work.answers[i] === question[2]);
 }
 
@@ -516,18 +600,35 @@ function renderLevel() {
       ${profile ? `<div class="profile-choice"><button type="button" class="action" id="choose" aria-pressed="${state.profile === level.id}">${state.profile === level.id ? 'Rama elegida' : 'Elegir esta rama'}</button><span>${state.profile && state.profile !== level.id ? 'Puedes cambiar de rama. Tus prácticas se conservan.' : 'Completa una rama para verificar el nivel 5.'}</span></div>` : ''}
       <a class="back-map" href="#mapa">↑ Volver al árbol</a>
     </div>
+    <nav class="chapter-nav" aria-label="Partes del nivel">
+      <a href="#topics-title"><span aria-hidden="true">01</span> Conceptos</a>
+      <a href="#lab-title"><span aria-hidden="true">02</span> Práctica</a>
+      <a href="#workbook-title"><span aria-hidden="true">03</span> Cuaderno</a>
+      <a href="#quiz-title"><span aria-hidden="true">04</span> Evaluación</a>
+    </nav>
     <div class="panel-body">
-      <section aria-labelledby="topics-title"><h3 id="topics-title">Lo que vas a aprender</h3>
+      <section aria-labelledby="topics-title"><h3 id="topics-title" tabindex="-1">Lo que vas a aprender</h3>
         <div class="topic-grid">${level.topics.map(([title, text]) => `<div class="topic"><h4>${title}</h4><p>${text}</p></div>`).join('')}</div>
       </section>
-      <section class="lab" aria-labelledby="lab-title"><span class="kicker">Ejercicio práctico</span><h3 id="lab-title">${level.lab}</h3>
+      <section class="lab" aria-labelledby="lab-title"><span class="kicker">Ejercicio práctico</span><h3 id="lab-title" tabindex="-1">${level.lab}</h3>
         <p class="intro-text">${level.scenario}</p>${level.input ? '<pre id="lab-input" tabindex="0" aria-label="Material de práctica"></pre>' : ''}
         <ol>${level.steps.map(step => `<li>${step}</li>`).join('')}</ol>
         <details><summary>Ver resultado de referencia</summary><p>${level.expected}</p></details>
         ${level.challenge ? `<div class="challenge"><h4>${level.challenge.title}</h4><p class="intro-text">${level.challenge.context}</p><ol>${level.challenge.tasks.map(task => `<li>${task}</li>`).join('')}</ol><details><summary>Comprobar mi decisión</summary><p>${level.challenge.expected}</p></details></div>` : ''}
         <div class="checks">${level.checks.map((check, i) => `<label><input type="checkbox" data-check="${i}" ${work.checks[i] ? 'checked' : ''}>${check}</label>`).join('')}</div>
       </section>
-      <section aria-labelledby="quiz-title"><h3 id="quiz-title">Autoevaluación</h3>
+      <section class="workbook" aria-labelledby="workbook-title">
+        <h3 id="workbook-title" tabindex="-1">Cuaderno de evidencias</h3>
+        <p class="intro-text">Documenta la práctica con datos ficticios. Puedes descargar tus borradores desde Mi trabajo y copias.</p>
+        <div class="workbook-fields">${evidenceFields.map(([title, fallback], i) => `
+          <div>
+            <label for="note-${i}">${title}</label>
+            <span class="hint" id="note-hint-${i}">${evidencePrompts[level.id]?.[i] || fallback}</span>
+            <textarea id="note-${i}" data-note="${i}" maxlength="${noteLimit}" aria-describedby="note-hint-${i}"></textarea>
+          </div>`).join('')}</div>
+        <div class="hint-row"><span id="note-status" aria-live="polite"></span><span>Hasta 3.000 caracteres por campo</span></div>
+      </section>
+      <section aria-labelledby="quiz-title"><h3 id="quiz-title" tabindex="-1">Autoevaluación</h3>
         ${level.quiz.map(([question, options], i) => `
           <fieldset aria-describedby="feedback-${i}"><legend>${question}</legend>
             ${options.map((option, j) => `<label class="option"><input type="radio" name="q-${i}" value="${j}" data-question="${i}" ${work.answers[i] === j ? 'checked' : ''}>${option}</label>`).join('')}
@@ -539,6 +640,10 @@ function renderLevel() {
     </div>`;
 
   if (level.input) document.querySelector('#lab-input').textContent = level.input;
+  panel.querySelectorAll('[data-note]').forEach(field => {
+    field.value = work.notes[field.dataset.note];
+  });
+  document.querySelector('#note-status').textContent = work.notes.some(note => note.trim()) ? 'Borrador disponible.' : 'Aún no has guardado anotaciones.';
   updateNextButton();
   if (work.verified) {
     showFeedback(level);
@@ -584,8 +689,17 @@ document.querySelector('#resume').addEventListener('click', event => {
   openLevel(nextLevel() || 'empleo');
 });
 
+panel.addEventListener('input', event => {
+  const input = event.target;
+  if (!input.matches('[data-note]')) return;
+  state.work[state.current].notes[input.dataset.note] = input.value;
+  const persisted = save();
+  document.querySelector('#note-status').textContent = persisted ? 'Borrador guardado en este navegador.' : 'Borrador disponible en esta sesión.';
+});
+
 panel.addEventListener('change', event => {
   const input = event.target;
+  if (!input.matches('[data-check], [data-question]')) return;
   const work = state.work[state.current];
   if (input.matches('[data-check]')) work.checks[input.dataset.check] = input.checked;
   if (input.matches('[data-question]')) {
@@ -623,7 +737,7 @@ panel.addEventListener('click', event => {
   } else if (event.target.id === 'verify') {
     const work = state.work[level.id];
     showFeedback(level);
-    work.verified = passes(level);
+    work.verified = passes(level, work);
     const message = work.verified
       ? 'Nivel verificado. Puedes continuar desde tu ruta.'
       : !work.checks.every(Boolean)
@@ -635,6 +749,140 @@ panel.addEventListener('click', event => {
     updateNextButton();
     save();
   }
+});
+
+function noteCount(data) {
+  return levels.filter(level => data.work[level.id].notes.some(note => note.trim())).length;
+}
+
+function renderPortfolioStatus() {
+  const count = noteCount(state);
+  document.querySelector('#portfolio-summary').textContent = count
+    ? `${count} de ${levels.length} módulos tienen anotaciones. El archivo reúne esos borradores e indica qué niveles verificaste.`
+    : 'Escribe en el cuaderno de un nivel para incluirlo en el portafolio.';
+  document.querySelector('#export-portfolio').disabled = count === 0;
+}
+
+function download(name, type, contents) {
+  const url = URL.createObjectURL(new Blob([contents], {type}));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = name;
+  link.hidden = true;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function portfolioMarkdown() {
+  const profile = state.profile ? byId.get(state.profile).title : 'Por elegir';
+  const parts = ['# Portafolio de CiberSecurity', '', `**Especialización:** ${profile}`, '',
+    'Prácticas formativas con datos sintéticos. El estado corresponde a una autoevaluación.', ''];
+  for (const level of levels) {
+    const entry = state.work[level.id];
+    if (!entry.notes.some(note => note.trim())) continue;
+    parts.push(`## ${level.title}`, '', `**Práctica:** ${level.lab}`, '',
+      `**Estado:** ${entry.verified ? 'Verificado en el roadmap' : 'En preparación'}`, '');
+    entry.notes.forEach((note, i) => {
+      if (!note.trim()) return;
+      // Prefix every line so imported notes remain literal text in Markdown.
+      const literal = note.trim().split(/\r\n?|\n/).map(line => `    ${line}`).join('\n');
+      parts.push(`### ${evidenceFields[i][0]}`, '', literal, '');
+    });
+  }
+  return parts.join('\n');
+}
+
+function parseBackup(text) {
+  const backup = JSON.parse(text);
+  if (backup?.format !== 'cibersecurity-roadmap' || backup.version !== 1) throw new Error();
+  const data = backup.state;
+  if (!byId.has(data?.current) || (data.profile !== null && !branches.includes(data.profile))) throw new Error();
+  for (const level of levels) {
+    const entry = data.work?.[level.id];
+    if (!Array.isArray(entry?.checks) || entry.checks.length !== level.checks.length ||
+        !entry.checks.every(check => typeof check === 'boolean') ||
+        !Array.isArray(entry.answers) || entry.answers.length !== level.quiz.length ||
+        !entry.answers.every((answer, i) => answer === null ||
+          (Number.isInteger(answer) && answer >= 0 && answer < level.quiz[i][1].length)) ||
+        !Array.isArray(entry.notes) || entry.notes.length !== evidenceFields.length ||
+        !entry.notes.every(note => typeof note === 'string' && note.length <= noteLimit) ||
+        typeof entry.verified !== 'boolean') throw new Error();
+  }
+  return normalizeState(data);
+}
+
+const myWork = document.querySelector('#my-work');
+const backupFile = document.querySelector('#backup-file');
+const importReview = document.querySelector('#import-review');
+const importStatus = document.querySelector('#import-status');
+let pendingBackup = null;
+let importRequest = 0;
+
+function clearImport() {
+  importRequest += 1;
+  pendingBackup = null;
+  backupFile.value = '';
+  importReview.hidden = true;
+}
+
+document.querySelector('#open-work').addEventListener('click', () => {
+  clearImport();
+  importStatus.textContent = '';
+  renderPortfolioStatus();
+  myWork.showModal();
+});
+myWork.addEventListener('close', clearImport);
+
+document.querySelector('#export-portfolio').addEventListener('click', () => {
+  download('CiberSecurity-portafolio.md', 'text/markdown;charset=utf-8', portfolioMarkdown());
+});
+document.querySelector('#export-backup').addEventListener('click', () => {
+  const backup = {format:'cibersecurity-roadmap', version:1, state};
+  download('CiberSecurity-progreso.json', 'application/json', JSON.stringify(backup, null, 2));
+});
+document.querySelector('#select-backup').addEventListener('click', () => backupFile.click());
+
+backupFile.addEventListener('change', async () => {
+  const file = backupFile.files[0];
+  clearImport();
+  importStatus.textContent = '';
+  if (!file) return;
+  const request = importRequest;
+  try {
+    if (file.size > 1024 * 1024) throw new Error();
+    const candidate = parseBackup(await file.text());
+    if (request !== importRequest) return;
+    pendingBackup = candidate;
+    const completed = Object.values(candidate.work).filter(entry => entry.verified).length;
+    const completedLabel = completed === 1 ? 'módulo verificado' : 'módulos verificados';
+    document.querySelector('#import-summary').textContent =
+      `La copia contiene ${completed} ${completedLabel} y ${noteCount(candidate)} con anotaciones. Si la restauras, reemplazará tu avance actual.`;
+    importReview.hidden = false;
+    document.querySelector('#restore-backup').focus();
+  } catch {
+    if (request !== importRequest) return;
+    importStatus.textContent = 'No se pudo leer esta copia. Elige un JSON exportado por CiberSecurity de hasta 1 MB.';
+  }
+});
+
+document.querySelector('#cancel-import').addEventListener('click', () => {
+  clearImport();
+  importStatus.textContent = 'Restauración cancelada.';
+  document.querySelector('#select-backup').focus();
+});
+document.querySelector('#restore-backup').addEventListener('click', () => {
+  if (!pendingBackup) return;
+  state = pendingBackup;
+  clearImport();
+  const persisted = save();
+  renderTree();
+  renderProgress();
+  renderLevel();
+  renderPortfolioStatus();
+  importStatus.textContent = persisted ? 'Avance restaurado y guardado.' : 'Avance restaurado en esta sesión.';
+  document.querySelector('#select-backup').focus();
 });
 
 renderTree();

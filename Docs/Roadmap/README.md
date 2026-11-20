@@ -2,6 +2,8 @@
 
 El [roadmap interactivo en HTML](https://raw.githubusercontent.com/Dalieth17/CiberSecurity/MAIN/Docs/Roadmap/CiberSecurity.html) incluye los materiales de práctica, las verificaciones y el progreso local. Guarda el archivo como `CiberSecurity.html` y ábrelo en tu navegador. En el nivel 5 eliges SOC, seguridad de aplicaciones, seguridad en nube o gobierno, riesgo y cumplimiento. Después completas la validación defensiva avanzada y preparas el portafolio. Puedes hacer los ejercicios incorporados sin conexión.
 
+En el **Cuaderno** de cada nivel puedes escribir el método, el resultado y tu decisión. Desde **Mi trabajo y copias** puedes descargar las notas en Markdown para el portafolio o guardar una copia JSON para restaurar tu avance en otro navegador. Sigue usando únicamente datos ficticios en las notas.
+
 Sigue las etapas en orden. En cada una, lee los conceptos, haz la práctica y guarda la evidencia. Avanza cuando puedas explicar el resultado con tus propias palabras y cumplir el criterio de salida. Puedes guardar el avance copiando estas casillas a tus notas.
 
 | Etapa | Aprenderás a | Evidencia |

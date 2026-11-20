@@ -29,3 +29,5 @@ La primera entrega establece seis etapas y un laboratorio reproducible. Las pró
 El HTML autónomo presenta siete niveles por itinerario. Los cuatro niveles comunes iniciales desembocan en una especialización elegida por el estudiante. Las cuatro ramas convergen en validación defensiva avanzada y preparación laboral.
 
 Cada módulo contiene tres conceptos, un ejercicio con datos ficticios y pasos explícitos, un resultado de referencia, una lista de evidencias y dos preguntas. Verificar un módulo requiere confirmar todas las evidencias y acertar ambas respuestas. El HTML guía hacia el primer nivel pendiente del itinerario y conserva el progreso por rama cuando el navegador ofrece almacenamiento local. Las guías del repositorio se abren por internet.
+
+Cada módulo ofrece un cuaderno local con método, resultado y decisión. El estudiante puede editar borradores sin alterar sus verificaciones. El portafolio Markdown incluye los módulos con notas y su estado de autoevaluación. La copia JSON guarda la ruta, resultados y borradores. La restauración valida el formato, muestra un resumen y requiere aceptar el reemplazo del avance actual.
