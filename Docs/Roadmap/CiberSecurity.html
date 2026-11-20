@@ -1,39 +1,645 @@
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CiberSecurity · Árbol de aprendizaje</title>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102b24">
+<title>CiberSecurity · Ruta interactiva</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#e1efce,transparent 40rem),#f6f8ef;color:#183126;font:1rem/1.55 system-ui,sans-serif}a{color:#236344;text-underline-offset:.22em}header{max-width:68rem;margin:auto;padding:1rem clamp(1rem,5vw,3rem);display:flex;justify-content:space-between;border-bottom:1px solid #bdcdb7}header b:before{content:"";display:inline-block;width:.7rem;height:.7rem;border-radius:80% 15%;background:#477c4c;margin-right:.5rem;box-shadow:2px 3px #a9c68a}main{padding:0 1.2rem 3rem}.intro{text-align:center;padding:3rem 0 2rem}.eyebrow{font-size:.75rem;letter-spacing:.17em;text-transform:uppercase;font-weight:800;color:#326044}h1,h2{font-family:Georgia,serif;font-weight:normal}h1{font-size:clamp(2.9rem,8vw,6rem);line-height:1;letter-spacing:-.065em;margin:.45rem 0 1rem}p{margin:.45rem 0}.intro p{color:#425e4f}.meter{max-width:24rem;margin:1.5rem auto 0;text-align:left;background:#fffef6;border:1px solid #c9d8ba;border-radius:1rem;padding:.65rem 1rem;box-shadow:0 5px #d4e0c7;font-size:.85rem;font-weight:700}progress{width:100%;height:.8rem;display:block;accent-color:#387851;margin:.35rem 0}
-.tree{max-width:60rem;margin:auto}.tip{width:max-content;max-width:100%;margin:auto;padding:.45rem 1rem;background:#28543c;color:#fff;border-radius:2rem;box-shadow:0 5px #183626;font-size:.84rem;font-weight:750}.goal{margin-top:.85rem;background:#d9e8ae;color:#23432c;box-shadow:0 5px #9db87a}
-.tree ol{position:relative;margin:0;padding:1.1rem 0 0;display:grid;gap:1.05rem;list-style:none}.tree ol:before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1rem;transform:translateX(-50%);border-radius:1rem;background:linear-gradient(90deg,#284d36,#759f6b 40%,#365c41);box-shadow:4px 0 #27462925}
-.stage{position:relative;display:grid;grid-template-columns:1fr 5rem 1fr;align-items:start}.stage:before{content:"";position:absolute;left:calc(50% - 2.5rem);top:1.9rem;width:2.5rem;height:.55rem;background:linear-gradient(#72926b,#3a5d43);border-radius:1rem;transform:rotate(9deg)}.stage:nth-child(even):before{left:50%;transform:rotate(-9deg)}.node{z-index:1;grid-area:1/2;justify-self:center;margin-top:.9rem;width:2.45rem;height:2.45rem;display:grid;place-items:center;border-radius:50%;border:2px solid #f8f9e9;background:radial-gradient(circle at 30% 23%,#fbffd6,#b5d18a 64%,#799d65);box-shadow:0 4px #34543b,0 7px 10px #25412b44;font-size:.84rem;font-weight:850}.done .node{background:#246445;color:#fff}
-details{grid-area:1/1;border:1px solid #c3d3b7;border-radius:1.15rem;background:linear-gradient(145deg,#fffef7,#e8f1db);box-shadow:0 6px #c5d7b5,0 12px 20px #29452b22}.stage:nth-child(even) details{grid-column:3;background:linear-gradient(145deg,#fffef7,#e1eee7)}summary{padding:.9rem 2.7rem .9rem 1rem;position:relative;cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}summary:after{content:"+";position:absolute;right:.85rem;top:.9rem;width:1.5rem;height:1.5rem;display:grid;place-items:center;border:1px solid #bdcdb4;border-radius:50%;background:#fff9}details[open] summary:after{content:"−"}h2{margin:0;font-size:clamp(1.32rem,3vw,1.8rem);line-height:1.15}summary span{color:#425e4f;font-size:.85rem}.content{padding:0 1rem 1rem;font-size:.9rem}.content ul{padding-left:1.15rem;margin:.2rem 0 .6rem}.content label{display:flex;align-items:center;gap:.55rem;font-weight:700;margin-top:.65rem;cursor:pointer}.content input{width:1.1rem;height:1.1rem;accent-color:#276b49}summary:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #975031;outline-offset:3px}footer{text-align:center;padding:0 1rem 2rem;color:#425e4f;font-size:.84rem}
-@media(max-width:700px){.intro{padding-top:2.15rem}.tree ol:before{left:1.22rem;width:.65rem}.tip{margin-left:0}.stage{grid-template-columns:3rem minmax(0,1fr)}.stage details,.stage:nth-child(even) details{grid-column:2}.stage .node{grid-column:1;justify-self:start}.stage:before,.stage:nth-child(even):before{left:1.22rem;width:1.8rem;transform:none}}
-</style></head>
-<body><header><b>CiberSecurity</b><a href="https://github.com/Dalieth17/CiberSecurity/blob/MAIN/Docs/Roadmap/README.md">Guía completa ↗</a></header>
-<main><section class="intro"><div class="eyebrow">De cero a un perfil junior</div><h1>Tu ruta hacia la<br>ciberseguridad</h1><p>Abre cada rama, realiza la práctica y guarda la evidencia.</p><div class="meter"><label id="status" for="progress" aria-live="polite">0 de 6 etapas completadas</label><progress id="progress" max="6" value="0"></progress></div></section>
-<section class="tree" aria-label="Árbol del roadmap"><div class="tip">Raíz · Empieza aquí</div><ol>
-<li class="stage"><span class="node" aria-hidden="true">01</span><details open><summary><h2>Fundamentos</h2><span>Qué proteger y por qué</span></summary><div class="content"><ul><li>Activos, amenazas, vulnerabilidades y riesgos</li><li>Confidencialidad, integridad y disponibilidad</li><li>Autenticación, autorización y evidencia</li></ul><p><strong>Evidencia:</strong> Inventario de tres activos con controles verificables.</p><a href="https://github.com/Dalieth17/CiberSecurity/blob/MAIN/Docs/Roadmap/01-fundamentos.md">Abrir lección ↗</a><label><input type="checkbox" value="01-fundamentos.md">Etapa completada</label></div></details></li>
-<li class="stage"><span class="node" aria-hidden="true">02</span><details><summary><h2>Sistemas y redes</h2><span>De la terminal a HTTPS</span></summary><div class="content"><ul><li>Procesos, archivos, Bash, grep y permisos</li><li>IP, puertos, DNS, TCP y TLS</li><li>Interpretación de respuestas HTTP</li></ul><p><strong>Evidencia:</strong> Permisos comprobados y diagrama de una conexión.</p><a href="https://github.com/Dalieth17/CiberSecurity/blob/MAIN/Docs/Roadmap/02-sistemas-redes.md">Abrir lección ↗</a><label><input type="checkbox" value="02-sistemas-redes.md">Etapa completada</label></div></details></li>
-<li class="stage"><span class="node" aria-hidden="true">03</span><details><summary><h2>Seguridad aplicada</h2><span>Controles que puedes comprobar</span></summary><div class="content"><ul><li>MFA y mínimo privilegio</li><li>Actualizaciones, cifrado y hash</li><li>Copias, restauración y registros</li></ul><p><strong>Evidencia:</strong> Plan con cinco controles y dos prioridades justificadas.</p><a href="https://github.com/Dalieth17/CiberSecurity/blob/MAIN/Docs/Roadmap/03-seguridad-aplicada.md">Abrir lección ↗</a><label><input type="checkbox" value="03-seguridad-aplicada.md">Etapa completada</label></div></details></li>
-<li class="stage"><span class="node" aria-hidden="true">04</span><details><summary><h2>Detección y respuesta</h2><span>De una alerta a una decisión</span></summary><div class="content"><ul><li>Eventos y alertas</li><li>Análisis de registros sintéticos</li><li>Línea de tiempo, hipótesis y escalado</li></ul><p><strong>Evidencia:</strong> Recuento reproducible y nota de triaje.</p><a href="https://github.com/Dalieth17/CiberSecurity/blob/MAIN/Docs/Roadmap/04-deteccion.md">Abrir lección ↗</a><label><input type="checkbox" value="04-deteccion.md">Etapa completada</label></div></details></li>
-<li class="stage"><span class="node" aria-hidden="true">05</span><details><summary><h2>Especialización y proyecto</h2><span>Elige tu perfil</span></summary><div class="content"><ul><li>SOC: analiza el CSV y evalúa tu informe con la rúbrica</li><li>AppSec: revisa controles de una aplicación propia</li><li>Nube: verifica una matriz de acceso</li><li>Gobierno y riesgo: crea un registro de riesgos</li></ul><p><strong>Evidencia:</strong> Proyecto reproducible con resultados y limitaciones.</p><a href="https://github.com/Dalieth17/CiberSecurity/blob/MAIN/Docs/Roadmap/05-perfiles.md">Abrir lección ↗</a> · <a href="https://github.com/Dalieth17/CiberSecurity/blob/MAIN/Docs/Roadmap/proyectos/soc/README.md">Proyecto SOC ↗</a><label><input type="checkbox" value="05-perfiles.md">Etapa completada</label></div></details></li>
-<li class="stage"><span class="node" aria-hidden="true">06</span><details><summary><h2>Preparación laboral</h2><span>Presenta tu experiencia práctica</span></summary><div class="content"><ul><li>Compara tres vacantes junior</li><li>Publica tu laboratorio y proyecto</li><li>Adapta tu CV y ensaya una entrevista</li></ul><p><strong>Evidencia:</strong> Portafolio, CV y comparación de vacantes.</p><a href="https://github.com/Dalieth17/CiberSecurity/blob/MAIN/Docs/Roadmap/06-empleo.md">Abrir lección ↗</a><label><input type="checkbox" value="06-empleo.md">Etapa completada</label></div></details></li>
-</ol><div class="tip goal">Meta · Portafolio listo para postular</div></section></main>
-<footer>El avance se guarda en este navegador cuando permite el almacenamiento local.</footer>
-<script>
-const boxes = [...document.querySelectorAll('input[type="checkbox"]')];
-const key = 'cibersecurity-roadmap-v1';
-try {
-  const saved = JSON.parse(localStorage.getItem(key) || '[]');
-  if (Array.isArray(saved)) boxes.forEach(box => { box.checked = saved.includes(box.value); });
-} catch {}
-function update() {
-  const done = boxes.filter(box => box.checked).map(box => box.value);
-  boxes.forEach(box => box.closest('.stage').classList.toggle('done', box.checked));
-  document.querySelector('#progress').value = done.length;
-  document.querySelector('#status').textContent = done.length + ' de ' + boxes.length + ' etapas completadas';
-  try { localStorage.setItem(key, JSON.stringify(done)); } catch {}
+:root {
+  --night:#102b24; --deep:#183b30; --mint:#d9f394; --accent:#2f724b;
+  --paper:#f2f5eb; --white:#fffef8; --ink:#162d25; --muted:#4a6357; --line:#d2ded0;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif; --serif:Georgia,"Times New Roman",serif;
 }
-boxes.forEach(box => box.addEventListener('change', update));
-update();
-</script></body></html>
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+html { scroll-behavior:smooth; }
+body { margin:0; color:var(--ink); background:var(--paper); font:1rem/1.6 var(--sans); }
+button,input { font:inherit; }
+button,a,label,summary { -webkit-tap-highlight-color:transparent; }
+button { cursor:pointer; }
+a { color:#255f43; text-underline-offset:.2em; }
+:focus-visible { outline:3px solid #a64c2a; outline-offset:4px; }
+.wrap { width:min(100% - 3.5rem, 75rem); margin-inline:auto; }
+header,.hero { background:var(--night); color:#f8fbe9; }
+header .wrap { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 0; border-bottom:1px solid #355347; }
+.brand { display:flex; align-items:center; gap:.55rem; color:inherit; font-weight:850; text-decoration:none; letter-spacing:-.025em; }
+.brand i { width:1rem; height:1rem; border-radius:80% 15%; background:var(--mint); box-shadow:2px 3px #548052; transform:rotate(-14deg); }
+header .guide { color:#dceec4; font-size:.83rem; }
+.hero { overflow:hidden; }
+.hero .wrap { min-height:23rem; display:grid; grid-template-columns:1.27fr 1fr; align-items:center; gap:2rem; }
+.hero-copy { position:relative; z-index:1; padding:2.7rem 0 3.1rem; }
+.kicker { color:#37774f; text-transform:uppercase; letter-spacing:.14em; font-size:.73rem; font-weight:800; }
+.hero .kicker { color:var(--mint); }
+h1,h2,h3,h4,p { margin:0; }
+h1,h2,h3 { font-family:var(--serif); letter-spacing:-.045em; font-weight:normal; }
+h1 { font-size:clamp(3.1rem,6.8vw,6.7rem); line-height:.9; margin:.72rem 0 1rem; }
+h1 em { display:block; color:var(--mint); font-weight:normal; }
+.hero p { max-width:32rem; color:#d9e7d8; margin-bottom:1.35rem; }
+.cta,.action { display:inline-flex; align-items:center; justify-content:center; padding:.65rem .95rem; border:1px solid #597850; border-radius:.65rem; background:var(--mint); color:#203a2c; text-decoration:none; font-weight:800; font-size:.86rem; box-shadow:0 3px #658254; }
+.action { background:#255c43; color:white; box-shadow:0 3px #153d2c; border-color:#204e39; }
+.action:disabled { cursor:default; opacity:.62; }
+.cta:hover,.action:not(:disabled):hover { filter:brightness(1.09); }
+.hero-art { position:relative; height:21rem; isolation:isolate; display:grid; place-items:center; }
+.hero-art::before { content:""; position:absolute; z-index:-1; width:24rem; height:24rem; border-radius:50%; background:radial-gradient(circle,#57846055,transparent 69%); }
+.orbit { position:absolute; width:min(94%, 21rem); height:80%; border:1px solid #6c97677a; border-radius:50%; transform:rotate(-25deg); }
+.orbit.two { transform:rotate(29deg); }
+.art-plane { position:relative; width:15rem; height:15rem; transform:rotateX(52deg) rotateZ(-35deg); border-radius:2.1rem; background:linear-gradient(145deg,#64896b,#325d45); box-shadow:10px 11px #244c39,19px 20px #183b2d,25px 26px 35px #061c12; border:1px solid #9cb78b; }
+.art-plane::before { content:""; position:absolute; inset:1rem; border-radius:1.5rem; background:repeating-linear-gradient(0deg,transparent 0 1.22rem,#edf9d52a 1.23rem 1.27rem),repeating-linear-gradient(90deg,transparent 0 1.22rem,#edf9d52a 1.23rem 1.27rem); }
+.art-path { position:absolute; inset:25% 26%; border:4px solid #d8f69c; border-left:0; border-bottom:0; border-radius:0 18% 0 0; filter:drop-shadow(0 0 5px #d8f69caa); }
+.tile { position:absolute; display:grid; place-items:center; width:3rem; height:3rem; border:1px solid #eaf9be; border-radius:.65rem; background:linear-gradient(145deg,#edf9bb,#b9d686); color:#204332; box-shadow:5px 6px #688c52; font-size:1.35rem; font-weight:850; }
+.tile.a { left:13%; top:14%; }.tile.b { right:14%; top:14%; }.tile.c { right:14%; bottom:13%; }
+.art-dot { position:absolute; width:.65rem; height:.65rem; border-radius:50%; background:var(--mint); box-shadow:0 0 15px #ddf8aaba; top:21%; right:14%; }
+.art-dot.last { top:auto; bottom:15%; left:15%; width:.43rem; height:.43rem; }
+
+.workspace { padding-block:2.1rem 3.8rem; }
+.status { display:grid; grid-template-columns:1fr minmax(11rem,19rem) auto; align-items:center; gap:1.3rem; padding:1rem 1.2rem; margin-bottom:2rem; background:#e5eddb; border:1px solid #cdddc5; border-radius:1rem; box-shadow:0 4px #d4dfce; }
+.status strong { display:block; }.status p { color:var(--muted); font-size:.85rem; }
+progress { display:block; width:100%; height:.65rem; margin:.35rem 0; appearance:none; border:0; border-radius:1rem; background:#cbdcbe; overflow:hidden; color:#33754e; }
+progress::-webkit-progress-bar { background:#cbdcbe; }
+progress::-webkit-progress-value { background:#33754e; }
+progress::-moz-progress-bar { background:#33754e; }
+.status a { font-size:.83rem; font-weight:750; }
+.layout { display:grid; grid-template-columns:minmax(16rem, 19rem) minmax(0,1fr); align-items:start; gap:clamp(1.5rem,4vw,3.6rem); }
+.map h2 { font-size:2.05rem; line-height:1.15; margin-bottom:.25rem; }
+.map > p { font-size:.85rem; color:var(--muted); }
+.roadmap { list-style:none; position:relative; padding:0 0 0 1.7rem; margin:1.05rem 0 0; display:grid; gap:.75rem; }
+.roadmap::before { content:""; position:absolute; top:1.25rem; bottom:1.25rem; left:.48rem; width:.4rem; background:linear-gradient(90deg,#315f46,#82a97a 48%,#467352); border-radius:.3rem; box-shadow:2px 0 #bacfb9; }
+.roadmap > li { position:relative; min-width:0; }
+.roadmap > li::before { content:""; position:absolute; top:1.35rem; left:-1.22rem; width:1.3rem; height:.36rem; border-radius:.3rem; background:#62926a; }
+.map-button { display:flex; align-items:center; text-align:left; gap:.6rem; width:100%; min-width:0; border:1px solid #ccdccc; border-radius:.68rem; background:#fffef8; color:var(--ink); padding:.5rem .55rem; box-shadow:0 3px #d7e3d4; font-size:.84rem; font-weight:750; line-height:1.3; }
+.map-button:hover { background:#edf5e2; }.map-button[aria-current="step"] { background:#e0efc9; border-color:#69946a; box-shadow:0 3px #9eb992; }
+.round { display:grid; place-items:center; flex:0 0 1.7rem; height:1.7rem; border-radius:50%; background:#dbead0; color:#234e38; box-shadow:0 2px #c3d7b8; font-size:.7rem; }
+.round.done { color:white; background:#2d6548; box-shadow:0 2px #183f2b; }
+.node-info { display:block; color:#4b6657; font-size:.71rem; margin-top:.2rem; font-weight:500; }
+.fork-title { display:flex; align-items:center; gap:.55rem; font-size:.86rem; font-weight:800; margin:0 0 .65rem; }
+.branches { list-style:none; margin:.25rem 0 .1rem .87rem; padding:0 0 0 1rem; border-left:2px solid #82a981; display:grid; gap:.55rem; }
+.branches li { position:relative; }
+.branches li::before { content:""; position:absolute; top:1.35rem; left:-1rem; width:1rem; border-top:2px solid #82a981; }
+.branches .map-button { font-size:.79rem; }
+.panel { min-width:0; background:var(--white); border:1px solid #d1ddcf; border-radius:1.3rem; box-shadow:0 7px #dbe6d7,0 16px 32px #223c2710; overflow:hidden; }
+.panel-head { padding:clamp(1.15rem,4vw,2.1rem); background:linear-gradient(145deg,#eaf3dc,#f8f8eb); border-bottom:1px solid #d6e3ce; }
+.panel h2 { font-size:clamp(2rem,4vw,3.5rem); line-height:1; margin:.45rem 0 .8rem; }
+.panel-head p { color:var(--muted); max-width:39rem; }
+.panel-body { padding:clamp(1.15rem,4vw,2.1rem); display:grid; gap:1.8rem; }
+.panel h3 { font-size:clamp(1.45rem,3vw,2.15rem); line-height:1.15; margin:0 0 .55rem; }
+.panel h4 { font-size:.96rem; }
+.topic-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.6rem; }
+.topic { padding:.8rem; border:1px solid #dbe5d7; border-radius:.7rem; background:#f4f7eb; font-size:.86rem; }
+.topic p,.intro-text { color:var(--muted); }
+.topic p { margin-top:.25rem; }
+.lab { border:1px solid #d5e1d1; border-radius:.9rem; background:#f7f9f0; padding:1rem; }
+.lab .kicker { display:block; margin-bottom:.32rem; }
+.lab ol { padding-left:1.4rem; margin:.82rem 0; }
+.lab li + li { margin-top:.4rem; }
+pre { white-space:pre; overflow:auto; max-width:100%; border-radius:.6rem; padding:.75rem; background:#203d32; color:#edf5e5; font: .84rem/1.65 ui-monospace,monospace; }
+details { border-bottom:1px solid #d4dfcf; padding:.35rem 0; }
+summary { cursor:pointer; font-weight:750; width:fit-content; }
+details p { margin:.35rem 0 .5rem; color:var(--muted); }
+.challenge { margin:.85rem 0; padding:.8rem; border:1px solid #cddcbf; border-radius:.65rem; background:#edf3e3; }
+.challenge p { margin:.25rem 0; }
+.checks { display:grid; gap:.35rem; margin-top:.6rem; }
+.checks label,.option { display:flex; align-items:flex-start; gap:.58rem; cursor:pointer; }
+input { flex:none; width:1.08rem; height:1.08rem; accent-color:#2a6e4a; margin:.24rem 0 0; }
+fieldset { margin:0 0 .65rem; min-width:0; border:1px solid #d7e2d4; border-radius:.64rem; padding:.55rem .75rem .65rem; }
+legend { padding:0 .2rem; font-weight:750; font-size:.92rem; }
+.option { font-size:.88rem; padding:.2rem 0; }
+.feedback { margin:.32rem 0 0; font-size:.85rem; color:#315b43; }
+.feedback[data-correct="false"] { color:#853e2a; }
+.panel-actions { display:flex; flex-wrap:wrap; gap:.75rem 1rem; align-items:center; }
+.panel-actions p { color:var(--muted); font-size:.86rem; }
+.profile-choice { display:flex; flex-wrap:wrap; align-items:center; gap:.6rem; margin-top:.8rem; font-size:.86rem; }
+.back-map { display:inline-block; font-size:.82rem; margin-top:.8rem; }
+.references { display:flex; flex-wrap:wrap; gap:.35rem 1rem; font-size:.88rem; }
+footer { padding:1.2rem 0 1.8rem; text-align:center; color:var(--muted); font-size:.85rem; border-top:1px solid var(--line); }
+@media (max-width:980px) { .topic-grid { grid-template-columns:1fr; } }
+@media (max-width:700px) {
+  .wrap { width:calc(100% - 2rem); }.hero .wrap { grid-template-columns:1fr; min-height:auto; }.hero-copy { padding:2rem 0 2.3rem; }.hero-art { display:none; }
+  .status { grid-template-columns:1fr; gap:.4rem; margin-bottom:1.3rem; }.layout { grid-template-columns:1fr; gap:1.4rem; }.roadmap { max-width:32rem; }
+  .panel-body { gap:1.25rem; }.panel-head,.panel-body { padding:1rem; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+<header id="inicio"><div class="wrap">
+  <a class="brand" href="#inicio"><i aria-hidden="true"></i>CiberSecurity</a>
+  <a class="guide" href="https://github.com/Dalieth17/CiberSecurity/tree/MAIN/Docs/Roadmap">Guías en GitHub</a>
+</div></header>
+<main>
+  <section class="hero" aria-labelledby="page-title"><div class="wrap">
+    <div class="hero-copy">
+      <div class="kicker">Ruta de aprendizaje defensivo</div>
+      <h1 id="page-title">Ciberseguridad<em>paso a paso</em></h1>
+      <p>De los conceptos básicos a la validación de controles. Sigue el árbol, practica con datos ficticios y construye un portafolio que puedas defender.</p>
+      <a class="cta" href="#mapa">Explorar el árbol ↓</a>
+    </div>
+    <div class="hero-art" aria-hidden="true"><div class="orbit"></div><div class="orbit two"></div><div class="art-plane"><div class="art-path"></div><div class="tile a">01</div><div class="tile b">02</div><div class="tile c">✓</div></div><div class="art-dot"></div><div class="art-dot last"></div></div>
+  </div></section>
+
+  <div class="workspace wrap">
+    <section class="status" aria-label="Progreso del roadmap">
+      <div><strong id="progress-text" aria-live="polite">0 de 7 niveles verificados</strong><p id="next-step"></p></div>
+      <progress id="progress" max="7" value="0" aria-label="Niveles verificados"></progress>
+      <a id="resume" href="#nivel">Continuar mi ruta →</a>
+    </section>
+    <div class="layout">
+      <nav class="map" id="mapa" aria-labelledby="map-title">
+        <h2 id="map-title">Árbol de aprendizaje</h2>
+        <p>Empieza en el nivel 1. En el nivel 5, elige una rama. Los niveles 6 y 7 reúnen todas las rutas.</p>
+        <ol class="roadmap" id="tree"></ol>
+      </nav>
+      <article class="panel" id="nivel" aria-labelledby="level-title"></article>
+    </div>
+    <noscript><p>Activa JavaScript para usar el árbol interactivo o consulta las guías del repositorio desde el enlace del encabezado.</p></noscript>
+  </div>
+</main>
+<footer><div class="wrap" id="storage-status">El avance se guarda en este navegador si permite el almacenamiento local.</div></footer>
+<script>
+const levels = [
+  {
+    id: 'fundamentos', title: 'Fundamentos de seguridad', phase: 'Base', time: '45–60 min',
+    desc: 'Aprende a reconocer qué se protege, qué puede salir mal y cómo comprobar un control.',
+    topics: [
+      ['Activos y riesgos', 'Un activo es algo que tiene valor. Una amenaza puede causar daño si existe una debilidad. Estima el riesgo considerando probabilidad e impacto, y documenta qué información usaste.'],
+      ['Confidencialidad, integridad y disponibilidad', 'Un informe necesita lectura restringida, cambios autorizados y acceso cuando se requiere. Cada necesidad corresponde a una propiedad diferente.'],
+      ['Identidad y controles', 'Autenticar es verificar una identidad. Autorizar es decidir sus permisos. Un control debe tener un responsable y una comprobación observable.']
+    ],
+    lab: 'Inventario de una cafetería',
+    scenario: 'Una cafetería ficticia recibe pedidos en línea, guarda ventas en una hoja y usa un correo compartido para facturación. El equipo de caja y la administración tienen tareas diferentes.',
+    input: 'Activo                  Observación\nCorreo de facturación    Dos funciones comparten acceso\nHoja de ventas           Una persona edita las fórmulas\nServicio de pedidos      Una caída impide tomar pedidos',
+    steps: [
+      'Crea una tabla con activo, responsable, riesgo, propiedad afectada, control y verificación. Incluye los tres activos.',
+      'Para el correo, describe quién se autentica y qué permisos concretos necesita cada función.',
+      'Prioriza un riesgo y explica qué observarías para comprobar el control y qué evidencia te falta.'
+    ],
+    expected: 'Ejemplo de fila: hoja de ventas · administración · cambio accidental de fórmulas · integridad · proteger celdas · confirmar con un usuario de prueba que puede leer y no editar fórmulas.',
+    checks: ['Incluí los tres activos y las tres propiedades.', 'Distinguí autenticación de autorización.', 'Justifiqué una prioridad y una comprobación.'],
+    quiz: [
+      ['Se cambia sin permiso una fórmula de ventas. ¿Qué propiedad se afecta primero?', ['Disponibilidad', 'Integridad', 'Confidencialidad'], 1, 'El valor del informe depende de que sus datos se mantengan correctos y que solo se modifiquen con autorización.'],
+      ['Un usuario inicia sesión y no puede aprobar un pago. ¿Qué control decidió el acceso?', ['Autorización', 'Copia de seguridad', 'Autenticación'], 0, 'La identidad ya se verificó. El permiso para aprobar pagos se decide al autorizar la acción.']
+    ],
+    links: [['Lección de fundamentos', '01-fundamentos.md']]
+  },
+  {
+    id: 'sistemas', title: 'Sistemas, terminal y redes', phase: 'Base', time: '60–90 min',
+    desc: 'Lee archivos y permisos, y localiza en qué capa ocurre un problema de red.',
+    topics: [
+      ['Procesos, rutas y permisos', 'Un proceso es un programa en ejecución. Una ruta relativa se interpreta desde el directorio actual. En un archivo Unix, propietario, grupo y otros tienen permisos diferenciados.'],
+      ['DNS, IP y TCP', 'DNS resuelve nombres, las direcciones IP permiten identificar destinos y TCP establece un flujo entre puertos. Documentar cada paso ayuda a aislar la causa de un problema.'],
+      ['TLS y HTTP', 'TLS protege la comunicación en tránsito. HTTP define peticiones y respuestas. Un 403 indica que se recibió una respuesta HTTP que deniega la solicitud.']
+    ],
+    lab: 'Filtra eventos y dibuja una conexión',
+    scenario: 'Usa Bash en Linux, macOS o WSL. El bloque escribe únicamente dentro de una carpeta temporal. Si no tienes Bash, interpreta los permisos y resuelve el caso de red con papel.',
+    input: "dir_practica=$(mktemp -d) && cd \"$dir_practica\"\nprintf '%s\\n' 'actor-1 failure' 'actor-1 success' 'actor-2 failure' > eventos.txt\ngrep -n 'failure$' eventos.txt\ngrep -c 'failure$' eventos.txt\nchmod 600 eventos.txt\nls -l eventos.txt",
+    steps: [
+      'Predice las líneas que mostrará grep. Ejecuta el bloque, compara y explica el significado de $ en el patrón.',
+      'Anota los permisos que muestra ls. Explica qué puede hacer el propietario y qué permisos ordinarios tienen grupo y otros.',
+      'Dibuja la secuencia de una conexión ficticia: portal.example → 192.0.2.20 → puerto TCP 443 → TLS → GET /informe → 403. Señala el punto que investigarías.'
+    ],
+    expected: 'Se muestran las líneas 1 y 3, el recuento es 2 y el modo comienza por -rw-------. El 403 pertenece a HTTP; consulta al responsable de la aplicación sobre la solicitud y sus permisos.',
+    checks: ['Anoté o deduje el recuento y los permisos.', 'Dibujé DNS, TCP, TLS y HTTP en orden.', 'Identifiqué dónde investigar el 403.'],
+    quiz: [
+      ['¿Qué etapa traduce portal.example a una dirección IP?', ['TLS', 'DNS', 'HTTP'], 1, 'DNS resuelve el nombre antes de que el cliente se conecte a esa dirección.'],
+      ['¿Qué expresan estos permisos: -rw-------?', ['Todos pueden leer', 'El grupo puede escribir', 'El propietario puede leer y escribir'], 2, 'Los dos permisos están en el bloque del propietario. Grupo y otros carecen de permisos ordinarios.']
+    ],
+    links: [['Práctica de terminal', 'practicas/terminal.md'], ['Práctica de redes', 'practicas/redes.md']]
+  },
+  {
+    id: 'seguridad', title: 'Seguridad aplicada', phase: 'Práctica', time: '60–90 min',
+    desc: 'Diseña controles para identidades, datos y recuperación y demuestra que funcionan.',
+    topics: [
+      ['Identidad y mínimo privilegio', 'Asigna permisos por tarea y revisa altas, cambios de rol y bajas. MFA combina factores de categorías distintas.'],
+      ['Datos y cambios', 'Cifra datos según su exposición. Un hash, comparado con una referencia confiable, permite detectar cambios. Registra quién aprobó los cambios y cómo revertirlos.'],
+      ['Recuperación', 'El RPO es la pérdida de datos aceptable medida en tiempo. El RTO es el tiempo objetivo de recuperación. Valida ambos con una restauración de prueba.']
+    ],
+    lab: 'Plan de endurecimiento y recuperación',
+    scenario: 'Una tienda pierde el acceso a sus informes a las 10:00 UTC. Su copia más reciente es de las 08:45 y confirma la recuperación a las 11:30. Los objetivos son RPO de 60 min y RTO de 120 min.',
+    steps: [
+      'Diseña cinco controles para identidad, permisos, actualizaciones, copias y registros. Para cada control escribe riesgo, responsable, comprobación y resultado esperado.',
+      'Calcula la pérdida de datos y el tiempo de recuperación. Determina qué objetivo se cumple.',
+      'Propón una mejora para el objetivo incumplido y describe cómo verificarías su resultado con datos ficticios.'
+    ],
+    expected: 'La copia deja 75 minutos de datos por recuperar: supera el RPO. La recuperación tarda 90 minutos y cumple el RTO. Prueba una frecuencia de respaldo mayor y confirma que la copia es restaurable.',
+    checks: ['Documenté cinco controles con responsables.', 'Calculé RPO y RTO correctamente.', 'Propuse una prueba de restauración verificable.'],
+    quiz: [
+      ['¿Qué evidencia valida que una copia sirve para recuperar un informe?', ['Un correo que anuncia la copia', 'Una restauración de prueba con datos comprobados', 'El tamaño del archivo de respaldo'], 1, 'Una restauración permite comprobar disponibilidad e integridad del resultado.'],
+      ['¿Qué mide el RPO?', ['El tiempo máximo de interrupción', 'La pérdida de datos aceptable medida en tiempo', 'El número de cuentas de respaldo'], 1, 'El RPO fija hasta qué punto en el tiempo deben poder recuperarse los datos.']
+    ],
+    links: [['Lección de seguridad aplicada', '03-seguridad-aplicada.md']]
+  },
+  {
+    id: 'deteccion', title: 'Detección y respuesta', phase: 'Práctica', time: '75–120 min',
+    desc: 'Correlaciona eventos, evalúa hipótesis y deja una decisión trazable para el relevo.',
+    topics: [
+      ['Eventos, alertas y casos', 'Un evento describe lo observado. Una alerta prioriza eventos según una regla. Un caso agrega contexto, hipótesis y próximas acciones.'],
+      ['Correlación', 'Agrupa por identidad y servicio dentro de una ventana. Usa una zona horaria consistente. Verifica qué campos faltan y separa las filas que solo aportan contexto.'],
+      ['Triaje y escalado', 'La prioridad depende del impacto y de la evidencia disponible. Escribe quién debe actuar, qué información necesita y qué condición permitiría cerrar.']
+    ],
+    lab: 'Evalúa una alerta de autenticación',
+    scenario: 'Una regla alerta por tres fallos del mismo actor y servicio en un máximo de cinco minutos. Cada fila contiene hora UTC, actor, servicio, equipo y resultado.',
+    input: '14:02  actor-1  correo    equipo-A  fallo\n14:03  actor-1  correo    equipo-A  fallo\n14:04  actor-2  correo    equipo-B  éxito\n14:04  actor-1  correo    equipo-A  fallo\n14:05  actor-1  correo    equipo-C  éxito\n14:06  actor-1  archivos  equipo-C  éxito',
+    steps: [
+      'Identifica las filas que activaron la regla y calcula el intervalo entre el primer y último fallo.',
+      'Escribe una hipótesis legítima y una de uso indebido. Indica qué dato permitiría distinguirlas.',
+      'Redacta una nota de relevo con estado, prioridad razonada, responsable de la próxima acción y condición de cierre.'
+    ],
+    expected: 'Los tres fallos de actor-1 en correo abarcan dos minutos. Los accesos posteriores desde equipo-C aportan contexto. Para decidir, pide correlación con el inventario de dispositivos y el registro del segundo factor.',
+    checks: ['Identifiqué las filas y el intervalo.', 'Separé hechos de hipótesis.', 'Asigné responsable y condición de cierre.'],
+    quiz: [
+      ['¿El éxito posterior desde otro equipo confirma un incidente?', ['Sí, por sí solo', 'Sí, si aparece inmediatamente', 'Requiere más contexto'], 2, 'Un equipo diferente admite explicaciones legítimas. El inventario y el segundo factor ayudan a confirmar qué ocurrió.'],
+      ['¿Qué debería contener una nota de relevo?', ['Solo el nombre de la regla', 'Hechos, hipótesis, prioridad y próxima acción', 'Una lista de cuentas sin contexto'], 1, 'La nota debe permitir al siguiente analista reproducir la observación y actuar.']
+    ],
+    links: [['Laboratorio de registros', '04-deteccion.md'], ['Práctica de triaje', 'practicas/triaje.md']]
+  },
+  {
+    id: 'soc', title: 'Operaciones SOC', phase: 'Especialización', time: '2–3 h',
+    desc: 'Cierra un caso de triaje, escribe el relevo y documenta cómo reproducirlo.',
+    topics: [
+      ['Alerta y contexto', 'Usa coincidencias de actor, servicio y ventana. Añade contexto del dispositivo y de los accesos posteriores.'],
+      ['Escalado operativo', 'Distingue cuándo escalar para confirmar y cuándo recomendar contención. Documenta qué equipo tiene autoridad para actuar.'],
+      ['Calidad del informe', 'Cita identificadores, define criterios de cierre y registra las limitaciones del caso.']
+    ],
+    lab: 'Informe de triaje para el relevo',
+    scenario: 'Usa la tabla de detección del nivel anterior. Amplíala con dos eventos de actor-3: fallo a las 14:12 y éxito a las 14:20, ambos en correo desde equipo-D.',
+    steps: [
+      'Reproduce la regla en todo el conjunto y documenta por qué actor-3 no activa la alerta.',
+      'Entrega un informe con línea de tiempo UTC, evidencias identificables, dos hipótesis y destinatario del escalado.',
+      'Pide a otra persona que replique los recuentos con tu informe. Corrige los pasos que requieran inferencias.'
+    ],
+    expected: 'Solo actor-1 alcanza el umbral. La conclusión distingue la activación de la regla de la confirmación de un incidente.',
+    checks: ['Entregué el conjunto de eventos y el método reproducible.', 'El informe tiene próximos pasos y condiciones de cierre.', 'Verifiqué que otra persona pueda seguir el método.'],
+    quiz: [
+      ['¿Qué sustenta una decisión defendible?', ['La evidencia citada y explícita', 'La gravedad por defecto de la herramienta', 'La cantidad total de registros'], 0, 'Las referencias permiten revisar por qué se decidió escalar o cerrar.'],
+      ['¿Por qué queda fuera actor-3?', ['El equipo-D está autorizado', 'Solo tiene un fallo observado', 'El éxito borra el fallo'], 1, 'La regla requiere tres fallos; la tabla no permite establecer autorización del equipo.']
+    ],
+    links: [['Proyecto SOC con CSV y rúbrica', 'proyectos/soc/README.md']]
+  },
+  {
+    id: 'appsec', title: 'Seguridad de aplicaciones', phase: 'Especialización', time: '2–3 h',
+    desc: 'Diseña una política de acceso y verifica su cumplimiento con pruebas defensivas.',
+    topics: [
+      ['Límites de confianza', 'Dibuja qué datos pasan del navegador al servicio y del servicio al almacenamiento. Identifica dónde se verifican identidad y permisos.'],
+      ['Autorización por recurso', 'En cada operación, el servidor verifica acción y titularidad del recurso. Una comprobación distintiva incluye identidades con permisos diferentes.'],
+      ['Pruebas y registros', 'Comprueba resultados permitidos y denegados. Registra quién y qué acción sin almacenar valores sensibles.']
+    ],
+    lab: 'Matriz de autorización para informes',
+    scenario: 'Un lector puede ver sus propios informes. Un editor puede ver y editar los suyos. Un auditor puede leer informes ajenos y carece de permiso de escritura.',
+    steps: [
+      'Dibuja navegador, API y almacén. Marca dónde el servicio obtiene la identidad y decide acceso.',
+      'Crea una tabla con rol, operación, titularidad y decisión esperada. Incluye al menos seis casos.',
+      'Describe cómo correrías pruebas locales con identidades ficticias y qué campos registrarías.'
+    ],
+    expected: 'El auditor puede consultar un informe ajeno y no editarlo. El editor puede editar el propio. La validación de titularidad vive en el servicio.',
+    checks: ['Dibujé límites de confianza y flujo de identidad.', 'Documenté seis casos, permitidos y denegados.', 'Justifiqué qué guardar en auditoría.'],
+    quiz: [
+      ['¿Dónde se aplica la decisión de autorización?', ['Solo en el navegador', 'En el servidor antes de la operación', 'En la página de ayuda'], 1, 'El servicio debe verificar la política antes de acceder a los datos.'],
+      ['¿Qué verifica un buen caso negativo?', ['Que un editor pueda editar su informe', 'Que la página tenga un título', 'Que un auditor no pueda editar un informe'], 2, 'Una prueba negativa comprueba que la operación queda denegada cuando falta el permiso.']
+    ],
+    links: [['Mapa de perfiles', '05-perfiles.md']]
+  },
+  {
+    id: 'nube', title: 'Seguridad en nube', phase: 'Especialización', time: '2–3 h',
+    desc: 'Separa entornos y demuestra qué identidades pueden hacer cada operación.',
+    topics: [
+      ['Identidades de servicio', 'Asigna identidades a las cargas de trabajo y limita el alcance por acción, recurso y entorno.'],
+      ['Separación de funciones', 'Quien despliega y quien aprueba cambios cumplen funciones diferentes. Define responsables y verifica rutas de aprobación.'],
+      ['Observabilidad', 'Los registros de acceso permiten vincular acciones con identidades. Protege su integridad y asigna responsables de revisión.']
+    ],
+    lab: 'Diseño de accesos por entorno',
+    scenario: 'Una carga genera informes en producción. Desarrollo usa datos de prueba. Auditoría necesita consultar el registro de producción.',
+    steps: [
+      'Crea una matriz con entorno, identidad, acción, recurso y justificación. Incluye lectura y escritura para los casos relevantes.',
+      'Comprueba en papel seis solicitudes. Incluye un intento de escritura de auditoría y una lectura cruzada desde desarrollo.',
+      'Define cómo verificarías el registro ficticio y quién aprobaría una modificación de acceso.'
+    ],
+    expected: 'Desarrollo carece de acceso a informes productivos. Auditoría puede leer sus registros, pero no modificarlos. La carga escribe solo donde corresponde.',
+    checks: ['Separé desarrollo de producción.', 'Definí seis verificaciones de acceso.', 'Asigné responsable de aprobación y revisión.'],
+    quiz: [
+      ['¿Qué permiso necesita una carga que solo genera informes?', ['Administración completa', 'Escritura sobre el destino requerido', 'Lectura de todos los entornos'], 1, 'La acción y el recurso deben limitarse a lo que la carga necesita.'],
+      ['¿Cómo demuestras que se aplica la política entre entornos?', ['Con pruebas permitidas y denegadas', 'Con el nombre de los entornos', 'Con el tamaño de los registros'], 0, 'Comprobar ambos resultados permite detectar permisos faltantes y excesivos.']
+    ],
+    links: [['Mapa de perfiles', '05-perfiles.md']]
+  },
+  {
+    id: 'grc', title: 'Gobierno, riesgo y cumplimiento', phase: 'Especialización', time: '2–3 h',
+    desc: 'Construye un registro de riesgos con responsables, evidencias y seguimiento.',
+    topics: [
+      ['Riesgo inherente y residual', 'El primero describe el riesgo antes de los controles. El residual estima lo que permanece después de aplicarlos.'],
+      ['Tratamiento y responsabilidad', 'Cada riesgo requiere un responsable que coordine el tratamiento y una fecha de revisión. Explicita quién puede aceptar el riesgo residual.'],
+      ['Evidencia de controles', 'Define método, frecuencia y resultado esperado. La evidencia debe corresponder al periodo y alcance evaluados.']
+    ],
+    lab: 'Registro de riesgos para una clínica ficticia',
+    scenario: 'La clínica usa agenda, expedientes ficticios y facturación. Prioriza indisponibilidad de citas, accesos indebidos y cambios accidentales.',
+    steps: [
+      'Usa probabilidad e impacto del 1 al 3. Define qué significa cada valor antes de puntuar.',
+      'Registra los tres riesgos con responsable y control, calcula probabilidad × impacto antes y después, y justifica cada cambio.',
+      'Añade fecha de revisión, evidencia a solicitar y persona con autoridad para aceptar el residual.'
+    ],
+    expected: 'Si una restauración comprobada reduce la probabilidad de una interrupción prolongada de 3 a 2 con impacto 3, el puntaje pasa de 9 a 6. La reducción requiere evidencia.',
+    checks: ['Definí la escala y evalué tres riesgos.', 'Justifiqué el puntaje residual.', 'Asigné responsables, revisión y evidencia.'],
+    quiz: [
+      ['¿Qué indica el riesgo residual?', ['El riesgo antes del control', 'El riesgo que permanece tras el control', 'La evidencia del auditor'], 1, 'El residual se evalúa después de considerar la eficacia demostrable de los controles.'],
+      ['¿Qué hace verificable un control?', ['Un nombre convincente', 'Una reunión para aprobarlo', 'Un criterio medible y evidencia del periodo'], 2, 'El criterio y la evidencia permiten comprobar si el control funcionó.']
+    ],
+    links: [['Mapa de perfiles', '05-perfiles.md']]
+  },
+  {
+    id: 'avanzado', title: 'Validación defensiva avanzada', phase: 'Avanzado', time: '2–4 h',
+    desc: 'Mide la calidad de una regla, documenta sus límites y diseña una mejora comprobable.',
+    topics: [
+      ['Resultado esperado y resultado observado', 'Etiqueta cada caso antes de evaluar una regla. Un verdadero positivo corresponde a un caso que requería escalada y que la regla detectó.'],
+      ['Precisión y sensibilidad', 'Precisión es TP/(TP+FP). Sensibilidad es TP/(TP+FN). Una regla puede producir menos ruido y perder detecciones.'],
+      ['Respuesta y verificación', 'Prueba cambios con un conjunto independiente. Registra versión, umbral, resultados, responsable, señales de degradación y criterio de reversión.']
+    ],
+    lab: 'Compara dos reglas de detección',
+    scenario: 'Cada fila corresponde a un caso sintético. Escalar es la etiqueta de referencia. A y B indican si cada regla emitió una alerta.',
+    input: 'Caso    Escalar    Regla A    Regla B\nC01     Sí         Sí         Sí\nC02     Sí         Sí         Sí\nC03     Sí         Sí         No\nC04     Sí         No         No\nC05     No         Sí         No\nC06     No         Sí         No\nC07     No         No         No\nC08     No         No         No',
+    steps: [
+      'Construye una matriz TP, FP, FN y TN por regla. Calcula precisión y sensibilidad con sus denominadores.',
+      'Elige una regla para un servicio donde omitir una escalada tiene impacto alto. Explica el costo de revisión y la limitación de usar ocho casos.',
+      'Diseña una segunda prueba con ejemplos independientes. Define evidencia requerida, condición de aceptación y reversión si baja la sensibilidad.',
+      'En un ejercicio de mesa, indica quién valida el cambio y qué registros y métricas revisarías tras activarlo.'
+    ],
+    challenge: {
+      title: 'Reto integrado · cambio de detección y respuesta',
+      context: 'La regla candidata se prueba en un entorno ficticio. El juego de validación independiente tiene 12 casos que requieren escalado y 18 que no. La regla detecta 10 de los 12 casos y genera 4 alertas entre los otros 18. El criterio preacordado es sensibilidad de al menos 90 % y un máximo de 5 falsos positivos. Después, en un ejercicio de mesa, el equipo de identidad confirma que uno de los dispositivos del caso anterior no estaba autorizado.',
+      tasks: [
+        'Decide si apruebas el cambio. Cita los valores observados, el criterio incumplido y qué prueba repetirías tras corregirlo.',
+        'Redacta un procedimiento de respuesta que asigne un responsable para confirmar el alcance, conservar evidencia, decidir la contención, recuperar el servicio y comprobar el cierre.',
+        'Prepara una ficha con regla y versión evaluadas, resultados, incertidumbre, decisión, responsables y criterio de reversión. Pide a otra persona que reproduzca los cálculos y revise que cada acción tenga evidencia de cierre.'
+      ],
+      expected: 'La sensibilidad de 10/12 (83,3 %) no llega al 90 %. Los 4 falsos positivos cumplen el límite. Detén la promoción y repite la validación tras ajustar el cambio. En el ejercicio de mesa, documenta la confirmación del equipo de identidad, escala al responsable de respuesta y deja la contención sujeta a la decisión del equipo autorizado.'
+    },
+    expected: 'A tiene TP=3, FP=2, FN=1 y TN=2: precisión 60 % y sensibilidad 75 %. B tiene TP=2, FP=0, FN=2 y TN=4: precisión 100 % y sensibilidad 50 %. A detecta más casos de esta muestra y requiere más revisiones.',
+    checks: ['Calculé ambas matrices y métricas.', 'Justifiqué una decisión con impacto y carga de revisión.', 'Diseñé una validación independiente y una reversión.', 'Entregué la ficha del reto con decisión y procedimiento de respuesta.'],
+    quiz: [
+      ['¿Qué métrica cae si se pierden más casos reales?', ['Sensibilidad', 'Cantidad de falsos positivos', 'El tamaño del conjunto'], 0, 'La sensibilidad divide los verdaderos positivos por los casos positivos totales.'],
+      ['¿Qué evidencia aporta una mejor evaluación antes de activar la regla?', ['Volver a medir solo con los ocho casos', 'Cambiar el umbral sin documentarlo', 'Validar en un conjunto independiente con criterios fijados'], 2, 'Un conjunto independiente ayuda a verificar si el resultado se mantiene fuera de los ejemplos que informaron el diseño.']
+    ]
+  },
+  {
+    id: 'empleo', title: 'Portafolio y preparación laboral', phase: 'Transición', time: '2–3 h',
+    desc: 'Convierte lo aprendido en evidencias que puedas reproducir y defender.',
+    topics: [
+      ['Portafolio verificable', 'Presenta el objetivo, insumos sintéticos, método, resultados y limitaciones. Conserva una versión del proyecto que otra persona pueda repetir.'],
+      ['Vacantes y brechas', 'Compara responsabilidades y requisitos de tres vacantes. Vincula cada habilidad con evidencia concreta o una práctica pendiente.'],
+      ['Entrevista técnica', 'Explica qué observaste, qué decidiste, por qué y cómo comprobaste el resultado. Distingue la práctica formativa de la experiencia laboral.']
+    ],
+    lab: 'Prepara una postulación técnica',
+    scenario: 'Elige un perfil del árbol. Puedes empezar con requisitos ficticios y luego adaptar la comparación a vacantes que te interesen.',
+    steps: [
+      'Selecciona dos evidencias: tu proyecto de especialización y el ejercicio de validación avanzada. Añade instrucciones y resultados verificables.',
+      'Para tres vacantes, clasifica requisitos obligatorios, deseables, evidencias y brechas. Elige dos tareas para cubrir brechas.',
+      'Escribe un resumen para el CV y ensaya una explicación de dos minutos de tu decisión técnica. Pide que otra persona replique una evidencia.'
+    ],
+    expected: 'Una afirmación defendible describe análisis y resultados medidos, por ejemplo: comparé dos reglas con ocho casos sintéticos y documenté la relación entre precisión y sensibilidad.',
+    checks: ['Preparé dos evidencias reproducibles.', 'Comparé tres vacantes y prioricé dos brechas.', 'Ensayé una explicación y comprobé la reproducibilidad.'],
+    quiz: [
+      ['¿Qué hace creíble una afirmación técnica en el CV?', ['Una métrica sin método', 'Un resultado verificable con contexto', 'La extensión del texto'], 1, 'El contexto permite entender qué hiciste, sobre qué datos y cómo obtuviste el resultado.'],
+      ['¿Cómo priorizas una brecha en una vacante?', ['Según su relevancia y si es obligatoria', 'Según la longitud de la descripción', 'Según la dificultad de explicar el nombre'], 0, 'Priorizar requisitos relevantes y obligatorios acerca el portafolio a la función.']
+    ],
+    links: [['Guía de empleo', '06-empleo.md']]
+  }
+];
+const byId = new Map(levels.map(level => [level.id, level]));
+const baseRoute = ['fundamentos', 'sistemas', 'seguridad', 'deteccion'];
+const branches = ['soc', 'appsec', 'nube', 'grc'];
+const finalRoute = ['avanzado', 'empleo'];
+const legacyIds = {
+  '01-fundamentos.md': 'fundamentos', '02-sistemas-redes.md': 'sistemas',
+  '03-seguridad-aplicada.md': 'seguridad', '04-deteccion.md': 'deteccion',
+  '05-perfiles.md': 'soc', '06-empleo.md': 'empleo'
+};
+const guideRoot = 'https://github.com/Dalieth17/CiberSecurity/blob/MAIN/Docs/Roadmap/';
+const stateKey = 'cibersecurity-roadmap-v2';
+const tree = document.querySelector('#tree');
+const panel = document.querySelector('#nivel');
+const storageStatus = document.querySelector('#storage-status');
+function read(key) {
+  try {
+    return JSON.parse(localStorage.getItem(key));
+  } catch {
+    return null;
+  }
+}
+
+const saved = read(stateKey);
+const previous = read('cibersecurity-roadmap-v1');
+const legacy = new Set(Array.isArray(previous) ? previous.map(path => legacyIds[path]) : []);
+const state = {
+  profile: branches.includes(saved?.profile) ? saved.profile : null,
+  current: byId.has(saved?.current) ? saved.current : 'fundamentos',
+  work: {}
+};
+
+for (const level of levels) {
+  const entry = saved?.work?.[level.id];
+  state.work[level.id] = {
+    checks: level.checks.map((_, i) => entry?.checks?.[i] === true),
+    answers: level.quiz.map(([, choices], i) => {
+      const answer = entry?.answers?.[i];
+      return Number.isInteger(answer) && answer >= 0 && answer < choices.length ? answer : null;
+    }),
+    verified: false
+  };
+  state.work[level.id].verified = entry?.verified === true && passes(level);
+}
+
+function save() {
+  try {
+    localStorage.setItem(stateKey, JSON.stringify(state));
+  } catch {
+    storageStatus.textContent = 'El almacenamiento local está desactivado. El avance se conserva mientras esta página permanezca abierta.';
+  }
+}
+
+function passes(level) {
+  const work = state.work[level.id];
+  return work.checks.every(Boolean) && level.quiz.every((question, i) => work.answers[i] === question[2]);
+}
+
+function route() {
+  return [...baseRoute, state.profile, ...finalRoute];
+}
+
+function nextLevel() {
+  const target = route().findIndex(id => !state.work[id]?.verified);
+  if (target === -1) return null;
+  return route()[target] || branches[0];
+}
+
+function levelNumber(id) {
+  return branches.includes(id) ? 5 : route().indexOf(id) + 1;
+}
+
+function treeButton(id) {
+  const level = byId.get(id);
+  const verified = state.work[id].verified;
+  const context = verified ? 'Verificado'
+    : state.profile === id ? 'Rama elegida'
+    : legacy.has(id) ? 'Marcado antes · falta verificar'
+    : level.phase;
+  return `<button class="map-button" type="button" data-level="${id}" ${state.current === id ? 'aria-current="step"' : ''}>
+    <span class="round ${verified ? 'done' : ''}" aria-hidden="true">${verified ? '✓' : String(levelNumber(id)).padStart(2, '0')}</span>
+    <span>${level.title}<span class="node-info">${context}</span></span>
+  </button>`;
+}
+
+function renderTree() {
+  tree.innerHTML = `${baseRoute.map(id => `<li>${treeButton(id)}</li>`).join('')}
+    <li><div class="fork-title"><span class="round" aria-hidden="true">05</span>Elige una especialización</div>
+    <ul class="branches">${branches.map(id => `<li>${treeButton(id)}</li>`).join('')}</ul></li>
+    ${finalRoute.map(id => `<li>${treeButton(id)}</li>`).join('')}`;
+}
+
+function renderProgress() {
+  const path = route();
+  const completed = path.filter(id => state.work[id]?.verified).length;
+  const next = nextLevel();
+  document.querySelector('#progress').value = completed;
+  document.querySelector('#progress-text').textContent = `${completed} de ${path.length} niveles verificados`;
+  document.querySelector('#next-step').textContent = next
+    ? `Siguiente · ${!state.profile && branches.includes(next) ? 'Elige una especialización' : byId.get(next).title}`
+    : 'Ruta verificada · prepara tu portafolio para compartirlo.';
+  document.querySelector('#resume').textContent = next ? 'Continuar mi ruta →' : 'Revisar mis evidencias →';
+}
+
+function renderLevel() {
+  const level = byId.get(state.current);
+  const work = state.work[level.id];
+  const profile = branches.includes(level.id);
+  panel.innerHTML = `
+    <div class="panel-head">
+      <div class="kicker">Nivel ${levelNumber(level.id)} · ${level.phase} · ${level.time}</div>
+      <h2 id="level-title" tabindex="-1">${level.title}</h2><p>${level.desc}</p>
+      ${profile ? `<div class="profile-choice"><button type="button" class="action" id="choose" aria-pressed="${state.profile === level.id}">${state.profile === level.id ? 'Rama elegida' : 'Elegir esta rama'}</button><span>${state.profile && state.profile !== level.id ? 'Puedes cambiar de rama. Tus prácticas se conservan.' : 'Completa una rama para verificar el nivel 5.'}</span></div>` : ''}
+      <a class="back-map" href="#mapa">↑ Volver al árbol</a>
+    </div>
+    <div class="panel-body">
+      <section aria-labelledby="topics-title"><h3 id="topics-title">Lo que vas a aprender</h3>
+        <div class="topic-grid">${level.topics.map(([title, text]) => `<div class="topic"><h4>${title}</h4><p>${text}</p></div>`).join('')}</div>
+      </section>
+      <section class="lab" aria-labelledby="lab-title"><span class="kicker">Ejercicio práctico</span><h3 id="lab-title">${level.lab}</h3>
+        <p class="intro-text">${level.scenario}</p>${level.input ? '<pre id="lab-input" tabindex="0" aria-label="Material de práctica"></pre>' : ''}
+        <ol>${level.steps.map(step => `<li>${step}</li>`).join('')}</ol>
+        <details><summary>Ver resultado de referencia</summary><p>${level.expected}</p></details>
+        ${level.challenge ? `<div class="challenge"><h4>${level.challenge.title}</h4><p class="intro-text">${level.challenge.context}</p><ol>${level.challenge.tasks.map(task => `<li>${task}</li>`).join('')}</ol><details><summary>Comprobar mi decisión</summary><p>${level.challenge.expected}</p></details></div>` : ''}
+        <div class="checks">${level.checks.map((check, i) => `<label><input type="checkbox" data-check="${i}" ${work.checks[i] ? 'checked' : ''}>${check}</label>`).join('')}</div>
+      </section>
+      <section aria-labelledby="quiz-title"><h3 id="quiz-title">Autoevaluación</h3>
+        ${level.quiz.map(([question, options], i) => `
+          <fieldset aria-describedby="feedback-${i}"><legend>${question}</legend>
+            ${options.map((option, j) => `<label class="option"><input type="radio" name="q-${i}" value="${j}" data-question="${i}" ${work.answers[i] === j ? 'checked' : ''}>${option}</label>`).join('')}
+            <p class="feedback" id="feedback-${i}" aria-live="polite"></p>
+          </fieldset>`).join('')}
+        <div class="panel-actions"><button class="action" type="button" id="verify">Verificar nivel</button><p id="result" aria-live="polite"></p><button class="action" type="button" id="next-level" hidden>Siguiente paso →</button></div>
+      </section>
+      ${level.links ? `<div class="references">${level.links.map(([name, url]) => `<a href="${guideRoot}${url}">${name} ↗</a>`).join('')}</div>` : ''}
+    </div>`;
+
+  if (level.input) document.querySelector('#lab-input').textContent = level.input;
+  updateNextButton();
+  if (work.verified) {
+    showFeedback(level);
+    document.querySelector('#result').textContent = 'Nivel verificado.';
+  }
+}
+
+function updateNextButton() {
+  const target = nextLevel();
+  document.querySelector('#next-level').hidden = !state.work[state.current].verified || !target || target === state.current;
+}
+
+function showFeedback(level) {
+  const work = state.work[level.id];
+  level.quiz.forEach(([, , correct, explanation], i) => {
+    const feedback = document.querySelector(`#feedback-${i}`);
+    const answer = work.answers[i];
+    if (answer === null) {
+      feedback.textContent = 'Elige una respuesta.';
+      delete feedback.dataset.correct;
+    } else {
+      feedback.dataset.correct = String(answer === correct);
+      feedback.textContent = answer === correct ? `Correcto. ${explanation}` : 'Revisa los conceptos del nivel y vuelve a intentarlo.';
+    }
+  });
+}
+
+function openLevel(id, moveFocus = true) {
+  state.current = id;
+  renderTree();
+  renderLevel();
+  save();
+  if (moveFocus) document.querySelector('#level-title').focus();
+}
+
+tree.addEventListener('click', event => {
+  const button = event.target.closest('[data-level]');
+  if (button) openLevel(button.dataset.level);
+});
+
+document.querySelector('#resume').addEventListener('click', event => {
+  event.preventDefault();
+  openLevel(nextLevel() || 'empleo');
+});
+
+panel.addEventListener('change', event => {
+  const input = event.target;
+  const work = state.work[state.current];
+  if (input.matches('[data-check]')) work.checks[input.dataset.check] = input.checked;
+  if (input.matches('[data-question]')) {
+    work.answers[input.dataset.question] = Number(input.value);
+    const feedback = document.querySelector(`#feedback-${input.dataset.question}`);
+    feedback.textContent = '';
+    delete feedback.dataset.correct;
+  }
+  if (work.verified) {
+    work.verified = false;
+    document.querySelector('#result').textContent = 'Has cambiado una respuesta o evidencia. Vuelve a verificar.';
+    renderTree();
+    renderProgress();
+    updateNextButton();
+  }
+  save();
+});
+
+panel.addEventListener('click', event => {
+  const level = byId.get(state.current);
+  if (event.target.id === 'next-level') {
+    const target = nextLevel();
+    if (target) openLevel(target);
+  } else if (event.target.id === 'choose') {
+    if (state.profile === level.id) return;
+    state.profile = level.id;
+    const message = event.target.nextElementSibling;
+    message.textContent = 'Esta rama cuenta para tu progreso.';
+    event.target.textContent = 'Rama elegida';
+    event.target.setAttribute('aria-pressed', 'true');
+    renderTree();
+    renderProgress();
+    updateNextButton();
+    save();
+  } else if (event.target.id === 'verify') {
+    const work = state.work[level.id];
+    showFeedback(level);
+    work.verified = passes(level);
+    const message = work.verified
+      ? 'Nivel verificado. Puedes continuar desde tu ruta.'
+      : !work.checks.every(Boolean)
+        ? 'Completa y marca las evidencias del ejercicio.'
+        : 'Revisa las respuestas e inténtalo de nuevo.';
+    document.querySelector('#result').textContent = message;
+    renderTree();
+    renderProgress();
+    updateNextButton();
+    save();
+  }
+});
+
+renderTree();
+renderProgress();
+renderLevel();
+</script>
+</body>
+</html>

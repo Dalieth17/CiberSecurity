@@ -23,3 +23,9 @@ Las contribuciones se preparan en DEV, se verifican en QA y se publican en MAIN.
 ## Evolución
 
 La primera entrega establece seis etapas y un laboratorio reproducible. Las próximas ampliaciones pueden dividir las etapas en lecciones, añadir cuestionarios y laboratorios, e incorporar referencias por tema. Cada ampliación incluirá un resultado verificable antes de publicarse.
+
+## Roadmap interactivo
+
+El HTML autónomo presenta siete niveles por itinerario. Los cuatro niveles comunes iniciales desembocan en una especialización elegida por el estudiante. Las cuatro ramas convergen en validación defensiva avanzada y preparación laboral.
+
+Cada módulo contiene tres conceptos, un ejercicio con datos ficticios y pasos explícitos, un resultado de referencia, una lista de evidencias y dos preguntas. Verificar un módulo requiere confirmar todas las evidencias y acertar ambas respuestas. El HTML guía hacia el primer nivel pendiente del itinerario y conserva el progreso por rama cuando el navegador ofrece almacenamiento local. Las guías del repositorio se abren por internet.
